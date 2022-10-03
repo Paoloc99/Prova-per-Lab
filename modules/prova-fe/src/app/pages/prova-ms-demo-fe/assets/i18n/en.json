@@ -1,0 +1,51 @@
+{
+    "detail": {
+        "Utente": {
+            "label": "Utente",
+            "labels": "Utente",
+            "tooltip": "Utente",
+            "utenteId": "Utente Id",
+            "tooltip.utenteId": "Utente Id",
+            "oauthId": "Oauth Id",
+            "tooltip.oauthId": "Oauth Id",
+            "name": "Name",
+            "tooltip.name": "Name",
+            "surname": "Surname",
+            "tooltip.surname": "Surname",
+            "email": "Email",
+            "tooltip.email": "Email",
+            "isAdmin": "Is Admin",
+            "tooltip.isAdmin": "Is Admin"
+        },
+        "Product": {
+            "label": "Product",
+            "labels": "Product",
+            "tooltip": "Product",
+            "productId": "Product Id",
+            "tooltip.productId": "Product Id"
+        },
+        "Ordine": {
+            "label": "Ordine",
+            "labels": "Ordine",
+            "tooltip": "Ordine",
+            "ordineId": "Ordine Id",
+            "tooltip.ordineId": "Ordine Id",
+            "date": "Date",
+            "tooltip.date": "Date",
+            "totalCost": "Total Cost",
+            "tooltip.totalCost": "Total Cost",
+            "attribute": "Attribute",
+            "tooltip.attribute": "Attribute",
+            "theUtente": "Utente"
+        },
+        "OrderItem": {
+            "label": "Order Item",
+            "labels": "Order Item",
+            "tooltip": "Order Item",
+            "amount": "Amount",
+            "tooltip.amount": "Amount",
+            "theOrdine": "Ordine",
+            "theProduct": "Product"
+        }
+    }
+}

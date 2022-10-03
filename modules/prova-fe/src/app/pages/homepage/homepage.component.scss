@@ -1,0 +1,66 @@
+.card-test {
+  font-size: 50px;
+}
+
+.card-title {
+  font-size: 20px;
+}
+
+.card-label {
+  font-size: 40px;
+}
+
+.chart-container {
+  margin-bottom: -17px;
+}
+
+.chart-height{
+  height: 460px;
+}
+@media only screen and (max-width: 500px) {
+  .card-test {
+    font-size: 15px;
+  }
+  .card-label {
+    font-size: 20px;
+  }
+  .card-title {
+    font-size: 18px;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 985px) {
+  .card-test {
+    display: none;
+  }
+  .card-label {
+    font-size: 15px;
+  }
+  .card-title {
+    font-size: 15px;
+  }
+}
+
+  @media (min-width: 985px) and (max-width: 1263px) {
+    .card-test {
+      font-size: 20px;
+    }
+    .card-label {
+      font-size: 15px;
+    }
+    .card-title {
+      font-size: 15px;
+    }
+  }
+
+@media (min-width: 1263px) and (max-width: 1424px) {
+  .card-test {
+    font-size: 25px;
+  }
+  .card-label {
+    font-size: 20px;
+  }
+  .card-title {
+    font-size: 20px;
+  }
+}

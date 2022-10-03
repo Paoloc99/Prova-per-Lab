@@ -1,0 +1,190 @@
+@import 'node_modules/@micegroup/voila2-blazing-ng/src/lib/theme/_mixins.scss';
+ 
+$poste-primary: #0047bb;
+$poste-bg-content: #f6f6f6;
+$poste-bg: #eedc00;
+$poste-color: #222427;
+ 
+$poste-theme: (
+   layout: (
+        background-color: $poste-bg,
+        color: $poste-color
+    ),
+    header: (
+        background-color: #eedc00,
+        color: #222427,
+        //box-shadow: $box-shadow
+    ),
+    button:  (
+    bg-basic: $basic,
+    border-color-basic: $basic,
+    color-basic: $color-basic,
+    box-shadow-basic: 0 0 0 0.375rem rgba(143, 155, 179, 0.16),
+    hover-basic: $hover-basic,
+    focus-basic: $focus-basic,
+    active-basic: $active-basic,
+   
+    bg-primary: $poste-primary,
+    border-color-primary: $poste-primary,
+    color-primary: white,
+    box-shadow-primary: 0 0 0 0.375rem rgba(143, 155, 179, 0.16),
+    hover-primary: #2a6dd1,
+    focus-primary:$poste-primary,
+    active-primary: $poste-primary,
+ 
+    bg-danger: $danger,
+    border-color-danger: $danger,
+    color-danger: $color-primary,
+    box-shadow-danger: 0 0 0 0.375rem rgba(143, 155, 179, 0.16),
+    hover-danger: $hover-danger,
+    focus-danger: $focus-danger,
+    active-danger: $active-danger
+),
+input:  (
+   
+    bg-active: #e6ecf2,
+    bg-focus: white,
+    disabled-bg: $bg-disabled,
+    disabled-bc: $bc-disabled,
+    disabled-color: $disabled-text,
+    placeholder: #b3b3b4,
+    option-active-bg: $poste-primary,
+    option-active-color: white,
+ 
+    border-primary: 1px solid $poste-primary,
+    border-focus-primary: 1px solid $focus-primary,
+    background-color-primary: #f4f8fc,
+    bg-hover-primary: #e6ecf2,
+   
+    border-danger:1px solid $danger,
+    border-focus-danger: 1px solid $focus-danger,
+    background-color-danger: #f4f8fc,
+    bg-hover-danger: #e6ecf2,
+ 
+    border-basic: 1px solid #e7ecf0,
+    border-focus-basic: 1px solid $poste-primary,
+    background-color-basic: #f4f8fc,
+    bg-hover-basic: #e6ecf2
+),
+   /*  body-container: (
+        background-color: $border-color,
+        color: $color
+    ),*/
+    footer: (
+        background-color:$poste-bg,
+        color: $poste-color
+    ),
+   /* sidebar-left: (
+        background-color:$bg,
+        box-shadow: $box-shadow
+    ),*/
+    menu: (
+        li-color: $poste-color,
+        li-border-bottom:solid $border-color,
+        li-hover-color: $poste-primary,
+        li-hover-focus: $poste-primary,
+        li-active: $poste-primary,
+        icon-margin: $poste-color
+    ),
+  /*  button: $button,*/
+    user: (
+        border: $poste-primary
+    ),
+    /*action: (
+        color: black,
+        border: 2px solid $border-color
+    ),
+    context-menu: (
+        bg:#fff,
+        color: #222b45,
+        border:  1px solid $border-color,
+        box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,.1),
+        border-bottom: 1px solid $border-color,
+        color-hover: $primary
+ 
+    ),
+    card: (
+        border: 1px solid rgba(0,0,0,.125),
+        bg:#fff,
+        border-top: 1px solid $border-color,
+        border-bottom: 1px solid $border-color,
+        color: #222b45,
+    ),
+    radio: $radio,
+    checkbox: $checkbox,
+    input: $input,
+    tooltip: (
+        bg-primary: $primary,
+        bg-danger: $danger,
+        bg-basic: $basic,
+        font-size: 14px,
+        font-family: inherit,
+        font-weight: inherit
+    ),
+    switch: $switch,
+    date-picker: $date-picker,*/
+    spinner: (
+        stroke-primary: $poste-primary,
+        stroke-danger: $focus-danger,
+        stroke-basic: $focus-basic
+    ),
+    /*tabset: (
+        border-bottom: 1px solid #edf1f7,
+        li-color: #222b45,
+        tab-link-color: #8f9bb3,
+        active-before-boreder-top: 4px solid $primary,
+        hover-before: 4px solid #598bff,
+        tab-link-hover-color: #598bff,
+        icon-not-active-hover-color: #598bff,
+        icon-active-hover-color: #598bff,
+        tab-link-active-color: $primary,
+        not-active: #8f9bb3,
+        icon-active: $primary,
+        icon-not-active: #8f9bb3
+    ),
+    stepper:(
+        step-trigger: #8f9bb3,
+        circle-active-color: $primary,
+        circle-active-border-color: $primary,
+        line-bg: #dbdfe7,
+        circle-color: #8f9bb3,
+        circle-border: 1px solid #8f9bb3,
+        step-completed-bg: $primary,
+        step-completed-color: white,
+        step-completed-border-color: $primary,
+        navigate-bg: $primary
+    ),
+    badge:(
+        bg-primary: $focus-primary,
+        bg-danger:$focus-danger,
+        bg-basic: $focus-basic
+    ),*/
+    table:(
+        header-row-border: 2px solid #e4e9f2,
+        header-row-bg: white,
+        header-row-color: $poste-color,
+        header-row-color-hover: $poste-primary,
+        bordered-body-column-border-top: 1px solid #e4e9f2,
+        full-bordered-header-border: 1px solid #e4e9f2,
+        body-row-stripped-bg: #f5f7fa,
+        sort-icon-color: #bababa,
+        header-sticky-color: #e4e9f2
+    ),
+    pagination: (
+        button-color: $poste-primary,
+        button-bg: #fff,
+        button-border: 1px solid #e4e9f2,
+        button-active-bg: $poste-primary,
+        button-active-color: white
+    ),
+    /*affix: (
+        ul-padding-left: 3.25rem ,
+        ul-font-size: 0.9375rem,
+        li-margin-bottom: 0.9375rem,
+        anchor-color: black,
+        li-active-weight: 500,
+        li-active-color: #007bff,
+        li-active-after-background: black,
+        li-active-after-radius:1.5px
+    ) */
+  );

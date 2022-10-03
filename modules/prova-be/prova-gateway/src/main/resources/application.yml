@@ -1,0 +1,44 @@
+server:
+  port: ${PORT:8080}
+
+spring:
+  application:
+    name: prova-gateway-service
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders: "*"
+            allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - OPTIONS
+      routes:
+
+        - id: ms-store
+          uri: http://${STORE_URL:127.0.0.1}:${STORE_PORT:8014}
+          predicates:
+            - Path=/store/**
+
+
+        - id: ms-database
+          uri: http://${DATABASE_URL:127.0.0.1}:${DATABASE_PORT:8015}
+          predicates:
+            - Path=/database/**
+
+
+  devtools:
+    livereload:
+      port: 35730
+
+logging:
+  level:
+    root: INFO
+
+app:
+  config:
+    correlationHeaderName: X-Correlation-ID

@@ -1,0 +1,38 @@
+<div class="fk-header-component">
+    <div class="fk-header-container">
+      <em bzButton status="primary" class="fa fa-list" (click)="toggleSidebar()" aria-hidden="true"></em>
+      <!-- title -->
+      <span class="dashboard-title fk-pointer" (click)="goToPage()"> Prova </span>
+
+      <!-- dropdown language -->
+      <div class="language-drop-size">
+        <bz-dropdown [options]="langaugeArray" (onSelect)="changeLanguage($event)" optionLabel="language" 
+        [selectedOption] = "defaultLanguage"
+        ></bz-dropdown>
+      </div>
+
+    </div>
+
+    <div class="fk-header-container">
+     <!--  icons -->
+      <bz-container-action>
+        <bz-action>
+          <i class="fa fa-search fk-cursor" aria-hidden="true"></i>
+        </bz-action>
+        <bz-action>
+          <i class="far fa-envelope fk-cursor" bzBadge="5" aria-hidden="true"></i>
+        </bz-action>
+        <bz-action>
+          <i class="far fa-bell fk-cursor" aria-hidden="true"></i>
+        </bz-action>
+      </bz-container-action>
+      <!-- context menu -->
+      <bz-user [user]="utente" [bzContextMenu]="tmpl"></bz-user>
+    </div>
+</div>
+
+<ng-template #tmpl>
+  <li class="context-row" (click)="navigateToUserProfile()"><i class="fa fa-user context-icon" aria-hidden="true"></i>profilo</li>
+  <li class="context-row" (click)="logout()"><i class="fas fa-sign-out-alt context-icon" aria-hidden="true"></i>logout</li>
+</ng-template>
+

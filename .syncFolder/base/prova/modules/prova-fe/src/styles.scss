@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/theme/theme.scss';
+
+.fk-row.inputs {
+    margin-bottom: 10px;
+}
+
+.button {
+    margin-left: 10px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.smart-table-td {
+    vertical-align:top
+}
+
+.fk-table-readonly td {
+    padding-bottom: 0.25rem;
+}
+
+.fk-main-header .fk-card-header {
+    font-size: 1.2rem;
+}
+
+label {
+    vertical-align: sub;
+}
+
+input[type=number] {
+    text-align: right !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /*Se vuoi nascondere completamente gli spin buttons dell'input field numerico
+  -webkit-appearance: none;
+  margin: 0;
+  */
+  margin-left: 0.5rem;
+}
+
+.popup {
+    position: absolute;
+    right: 30px;
+} 

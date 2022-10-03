@@ -1,0 +1,81 @@
+<bz-card class="fk-p-mt-50" isCollapsable>
+    <!-- card header -->
+    <bz-card-header>
+        {{ 'header.search' | translate }}
+    </bz-card-header>
+
+    <bz-card-content>
+        <form [formGroup]="searchOrdineForm" (keyup.enter)="submitForm()">
+            <!-- Ordine Id -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Ordine.ordineId' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="ordineIdFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Ordine.ordineId' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="ordineIdTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Date -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-date-picker label="{{ 'detail.Ordine.date' | translate }}:" placeholder="da" controlName="dateFrom" labelWidth="8" controlWidth="4"></bz-date-picker>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-date-picker label="{{ 'detail.Ordine.date' | translate }}:" placeholder="a" controlName="dateTo" labelWidth="8" controlWidth="4"></bz-date-picker>
+                </div>
+            </div>
+
+            <!-- Total Cost -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Ordine.totalCost' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="totalCostFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Ordine.totalCost' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="totalCostTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <bz-input label="{{ 'detail.Ordine.address' | translate }}:" formControlName="address"></bz-input>
+
+            <bz-dropdown
+                label="{{ 'detail.Ordine.theUtente' | translate }}:"
+                [options]="utenteList"
+                optionLabel="objectTitle"
+                optionValue="objectKey"
+                formControlName="theUtenteObjectKey"
+            >
+                <bz-error></bz-error>
+            </bz-dropdown>
+        </form>
+    </bz-card-content>
+</bz-card>

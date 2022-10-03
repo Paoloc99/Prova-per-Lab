@@ -1,0 +1,100 @@
+<bz-card [bzSpinner]="spinner" *ngIf="!(pageStatus | hasPageStatus: ['new', 'edit']) || readonly">
+    <bz-card-content>
+        {{ 'Ordine' | tableInfo: totalElements:page:pageSize }}
+        <bz-table
+            [sources]="ordineList"
+            cssClass="fk-table-stripped fk-table-bordered fk-table-readonly"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginate($event)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- OrdineId -->
+            <th bzHeaderColumn bzSortColumn="ordineId" scope="col" align="right">{{ 'detail.Ordine.ordineId' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" align="right">
+                <div class="fk-pointer" (click)="navigateToView(element.objectKey)">{{ element.ordineId }}</div>
+            </td>
+            <!-- Date -->
+            <th bzHeaderColumn bzSortColumn="date" scope="col">{{ 'detail.Ordine.date' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element">{{ element.date | date: 'dd/MM/yyyy' }}</td>
+            <!-- TotalCost -->
+            <th bzHeaderColumn bzSortColumn="totalCost" scope="col" align="right">{{ 'detail.Ordine.totalCost' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" align="right">{{ element.totalCost }}</td>
+            <!-- Attribute -->
+            <th bzHeaderColumn bzSortColumn="attribute" scope="col">{{ 'detail.Ordine.attribute' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element">{{ element.attribute }}</td>
+
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.Ordine.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>
+
+<!-- Add Ordine -->
+<bz-card *ngIf="(pageStatus | hasPageStatus: ['new', 'edit']) && !readonly">
+    <bz-card-content>
+        <bz-table
+            [bzSmartTable]="ordineList"
+            [bzFormGroup]="smartFormGroup"
+            [bzDisabledControls]="[]"
+            [bzForm]="form"
+            (smartArray)="getSmartArray($event)"
+            withIndex
+            cssClass="fk-table-stripped fk-table-bordered"
+            paginated
+        >
+            <!-- OrdineId -->
+            <th bzHeaderColumn scope="col">{{ 'detail.Ordine.ordineId' | translate }}*</th>
+            <td class="smart-table-td" *bzColumnDef="let element" [formGroup]="element?.value">
+                <bz-input formControlName="ordineId" type="number" [disableAttr]="(pageStatus | hasPageStatus: 'edit') && element.value.entityState == 'N'" validKey="Utente">
+                    <bz-error *ngFor="let err of errorsFor(element.value, 'ordineId')">
+                        {{ err.key | translate: getParams('detail.Ordine.ordineId' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+            </td>
+            <!-- Date -->
+            <th bzHeaderColumn scope="col">{{ 'detail.Ordine.date' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" [formGroup]="element?.value">
+                <bz-date-picker controlName="date" type="Date" validKey="Utente">
+                    <bz-error *ngFor="let err of errorsFor(element.value, 'date')">
+                        {{ err.key | translate: getParams('detail.Ordine.date' | translate, err.params) }}
+                    </bz-error>
+                </bz-date-picker>
+            </td>
+            <!-- TotalCost -->
+            <th bzHeaderColumn scope="col">{{ 'detail.Ordine.totalCost' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" [formGroup]="element?.value">
+                <bz-input formControlName="totalCost" type="number" validKey="Utente">
+                    <bz-error *ngFor="let err of errorsFor(element.value, 'totalCost')">
+                        {{ err.key | translate: getParams('detail.Ordine.totalCost' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+            </td>
+            <!-- Attribute -->
+            <th bzHeaderColumn scope="col">{{ 'detail.Ordine.attribute' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" [formGroup]="element?.value">
+                <bz-input formControlName="attribute" type="string" validKey="Utente">
+                    <bz-error *ngFor="let err of errorsFor(element.value, 'attribute')">
+                        {{ err.key | translate: getParams('detail.Ordine.attribute' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+            </td>
+
+            <!-- Remove Ordine -->
+            <th bzHeaderColumn scope="col"></th>
+            <td class="smart-table-td" *bzColumnDef="let element">
+                <button bzButton [bzRemoveRow]="element" status="danger">
+                    {{ 'buttons.delete' | translate }}
+                </button>
+                <button bzButton [bzRestoreRow]="element" status="primary">
+                    {{ 'buttons.restore' | translate }}
+                </button>
+            </td>
+
+            <ng-container> {{ 'table.noRecordFound' | translate: { '0': 'buttons.element' | translate } }} </ng-container>
+
+            <button bzButton bzAddRow>{{ 'buttons.new' | translate: { '0': 'buttons.element' | translate } }}</button>
+        </bz-table>
+    </bz-card-content>
+</bz-card>

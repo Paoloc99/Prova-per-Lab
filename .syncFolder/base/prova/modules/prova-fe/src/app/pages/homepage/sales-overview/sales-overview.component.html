@@ -1,0 +1,38 @@
+<bz-card>
+    <bz-card-header>
+        Panoramica degli acquisti
+    </bz-card-header>
+    <bz-card-content>
+	    <div class="fk-row">
+	        <div class="fk-col-6">
+	        
+	         <div class="fk-column fk-center" style="margin-top:50px">
+	            <div style="font-size: 50px;"> 600.000 </div>
+	            <div style="margin-top:15px">Venduti questo mese</div>
+	
+	            <div  style="margin-top:50px; color: rgb(66,207,126); font-weight: 700;"> 
+	                11% in più questo mese 
+	            </div>
+	
+	            <div style="margin-top:50px">
+	                <button bzButton > Vedi dettagli</button>
+	            </div>
+	
+	         </div>
+	
+	         
+	
+	         
+	         
+	        </div>
+	        <div class="fk-col-12">
+	            <div echarts
+	            [options]="option"
+	            [merge]="option"
+	            class="echart"
+	            (chartInit)="onChartInit($event)">
+	        </div>
+	        </div>
+	    </div>
+	</bz-card-content>
+</bz-card>

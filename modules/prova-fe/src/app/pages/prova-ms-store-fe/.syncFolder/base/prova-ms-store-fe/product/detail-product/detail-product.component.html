@@ -1,0 +1,92 @@
+<form [formGroup]="productForm">
+    <bz-card>
+        <bz-card-header class="fk-main-header">
+            {{ 'header.detail' | translate: { name: 'detail.Product.label' | translate } }}
+            <em bzTooltip="{{ 'detail.Product.tooltip' | translate }}" class="fa fa-question-circle"></em>
+        </bz-card-header>
+
+        <bz-card-content>
+            <ng-container *ngIf="pageStatus | hasPageStatus: ['new', 'edit']">
+                <!-- Product Id-->
+                <bz-input
+                    label="{{ 'detail.Product.productId' | translate }}*:"
+                    formControlName="productId"
+                    bzTooltip="{{ 'detail.Product.tooltip.productId' | translate }}"
+                    type="number"
+                    [disableAttr]="pageStatus | hasPageStatus: 'edit'"
+                >
+                    <bz-error *ngFor="let err of errorsFor(productForm, 'productId')">
+                        {{ err.key | translate: getParams('detail.Product.productId' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+            </ng-container>
+
+            <div *ngIf="pageStatus | hasPageStatus: 'view'">
+                <!-- Product Id -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Product.productId' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ product?.productId }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!--Tabs product -->
+            <app-tabs-product [formGroup]="productForm" [entity]="product" [pageStatus]="tabPageStatus"></app-tabs-product>
+        </bz-card-content>
+    </bz-card>
+
+    <!-- Buttons -->
+    <bz-buttons-panel fixed>
+        <button bzButton status="primary" type="button" (click)="buttonsService.goBack()">{{ 'buttons.goBack' | translate }}</button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'new') && (Privileges?.PRODUCT_CREATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="insertProduct()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.PRODUCT_FIND_BY_ID | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="editProduct()"
+            type="button"
+        >
+            {{ 'buttons.edit' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'edit') && (Privileges?.PRODUCT_UPDATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="updateProduct()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: ['view']) && (Privileges?.PRODUCT_DELETE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="confirmDeleteProduct()"
+        >
+            {{ 'buttons.delete' | translate }}
+        </button>
+        <button
+            bzButton
+            status="primary"
+            class="button"
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.PRODUCT_CREATE | hasPermission: privileges)"
+            routerLink="/pages/ms-store/product/detail-product/new"
+        >
+            {{ 'buttons.new' | translate: { '0': ' ' } }}
+        </button>
+        <button *ngIf="pageStatus | hasPageStatus: 'view'" bzButton status="primary" class="button" (click)="printPdfReport()">{{ 'buttons.export.pdf' | translate }}</button>
+    </bz-buttons-panel>
+</form>

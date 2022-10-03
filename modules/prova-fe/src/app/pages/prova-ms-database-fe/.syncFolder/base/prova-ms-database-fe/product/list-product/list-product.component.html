@@ -1,0 +1,56 @@
+<bz-card [bzSpinner]="spinner">
+    <!-- card header -->
+    <bz-card-header class="fk-main-header">
+        {{ 'header.list' | translate: { name: 'detail.Product.labels' | translate } }}
+    </bz-card-header>
+
+    <bz-card-content>
+        {{ 'Product' | tableInfo: totalElements:page:pageSize }}
+        <!-- Tabella tipo product -->
+        <bz-table
+            [sources]="productList"
+            cssClass="fk-table-stripped fk-table-bordered fk-table-readonly"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginateTable($event, productCriteria)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- Id Product -->
+            <th bzHeaderColumn bzSortColumn="productId" scope="col" align="right">{{ 'detail.Product.productId' | translate }}</th>
+            <td *bzColumnDef="let product" align="right">
+                <div class="fk-pointer" (click)="navigateToView(product.objectKey)">{{ product.productId }}</div>
+            </td>
+
+            <!-- Product Name -->
+            <th bzHeaderColumn bzSortColumn="productName" scope="col">{{ 'detail.Product.productName' | translate }}</th>
+            <td *bzColumnDef="let product">{{ product.productName }}</td>
+            <!-- Cost -->
+            <th bzHeaderColumn bzSortColumn="cost" scope="col" align="right">{{ 'detail.Product.cost' | translate }}</th>
+            <td *bzColumnDef="let product" align="right">{{ product.cost }}</td>
+            <!-- Disponibility -->
+            <th bzHeaderColumn bzSortColumn="disponibility" scope="col" align="right">{{ 'detail.Product.disponibility' | translate }}</th>
+            <td *bzColumnDef="let product" align="right">{{ product.disponibility }}</td>
+            <!-- Description -->
+            <th bzHeaderColumn bzSortColumn="description" scope="col">{{ 'detail.Product.description' | translate }}</th>
+            <td *bzColumnDef="let product">{{ product.description }}</td>
+            <!-- Image -->
+            <th bzHeaderColumn bzSortColumn="image" scope="col">{{ 'detail.Product.image' | translate }}</th>
+            <td *bzColumnDef="let product">{{ product.image }}</td>
+
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.Product.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>
+
+<!-- Search with criteria -->
+<app-search-product (submit)="searchWithCriteria()"></app-search-product>
+
+<!-- Buttons -->
+<bz-buttons-panel fixed>
+    <button bzButton status="primary" class="button" (click)="searchWithCriteria()">{{ 'buttons.search' | translate }}</button>
+    <button bzButton status="primary" class="button" *ngIf="Privileges?.PRODUCT_CREATE | hasPermission: privileges" routerLink="/pages/ms-database/product/detail-product/new">
+        {{ 'buttons.new' | translate: { '0': ' ' } }}
+    </button>
+</bz-buttons-panel>

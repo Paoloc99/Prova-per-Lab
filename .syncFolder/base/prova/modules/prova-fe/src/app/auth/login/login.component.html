@@ -1,0 +1,28 @@
+<bz-layout>
+    <form [formGroup]="loginForm" class="fk-center fk-m-height-v login-page" >
+        <bz-card style="width:30%">
+            <!-- header -->
+            <bz-card-header>
+                <span  class="fk-center login-header"> Accedi</span>
+            </bz-card-header>
+
+            <!-- Nome utente -->
+            <bz-input label="Nome Utente:" status="primary" formControlName="username" class="fk-block login-input" >
+                <bz-error>Il nome utente è obbligatorio</bz-error>
+            </bz-input>
+
+            <!-- Password -->
+            <bz-input label="Password:" status="primary" type="password" formControlName="password" class="fk-block login-input" >
+               <bz-error>La password è obbligatoria </bz-error>
+            </bz-input>
+
+            <!-- footer -->
+            <bz-card-footer>
+                <button type="button"  bzButton status="primary" (click)="login()" class="login-button">Submit</button>
+
+                <div class="fk-center login-answer" > Non hai un account ? 
+                    <strong class="fk-pointer login-singup" routerLink="/auth/signup"> Registrati</strong></div>
+            </bz-card-footer>
+        </bz-card>
+    </form>
+</bz-layout>

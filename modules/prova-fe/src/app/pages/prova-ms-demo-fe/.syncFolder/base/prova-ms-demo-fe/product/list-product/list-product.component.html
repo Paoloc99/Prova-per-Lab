@@ -1,0 +1,40 @@
+<bz-card [bzSpinner]="spinner">
+    <!-- card header -->
+    <bz-card-header class="fk-main-header">
+        {{ 'header.list' | translate: { name: 'detail.Product.labels' | translate } }}
+    </bz-card-header>
+
+    <bz-card-content>
+        {{ 'Product' | tableInfo: totalElements:page:pageSize }}
+        <!-- Tabella tipo product -->
+        <bz-table
+            [sources]="productList"
+            cssClass="fk-table-stripped fk-table-bordered fk-table-readonly"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginateTable($event, productCriteria)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- Id Product -->
+            <th bzHeaderColumn bzSortColumn="productId" scope="col" align="right">{{ 'detail.Product.productId' | translate }}</th>
+            <td *bzColumnDef="let product" align="right">
+                <div class="fk-pointer" (click)="navigateToView(product.objectKey)">{{ product.productId }}</div>
+            </td>
+
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.Product.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>
+
+<!-- Search with criteria -->
+<app-search-product (submit)="searchWithCriteria()"></app-search-product>
+
+<!-- Buttons -->
+<bz-buttons-panel fixed>
+    <button bzButton status="primary" class="button" (click)="searchWithCriteria()">{{ 'buttons.search' | translate }}</button>
+    <button bzButton status="primary" class="button" *ngIf="Privileges?.PRODUCT_CREATE | hasPermission: privileges" routerLink="/pages/ms-demo/product/detail-product/new">
+        {{ 'buttons.new' | translate: { '0': ' ' } }}
+    </button>
+</bz-buttons-panel>

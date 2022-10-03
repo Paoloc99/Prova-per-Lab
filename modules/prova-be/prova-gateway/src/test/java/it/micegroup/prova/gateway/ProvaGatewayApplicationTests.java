@@ -1,0 +1,13 @@
+package it.micegroup.prova.gateway;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ProvaGatewayApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

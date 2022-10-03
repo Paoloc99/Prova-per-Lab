@@ -1,0 +1,50 @@
+<bz-card [bzSpinner]="spinner" [size]="cardSize" global>
+    <bz-card-header class="fk-main-header">
+        {{ 'header.list' | translate: { name: 'detail.Utente.label' | translate } }}
+    </bz-card-header>
+
+    <bz-card-content>
+        <bz-table
+            [sources]="utenteList"
+            cssClass="fk-table-stripped fk-table-bordered"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginateTable($event, null)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- Utente Id -->
+            <th bzHeaderColumn bzSortColumn="utenteId" scope="col">{{ 'detail.Utente.utenteId' | translate }}</th>
+            <td *bzColumnDef="let element" class="fk-pointer" (click)="selectElement(element)">
+                {{ element.utenteId }}
+            </td>
+            <!-- Name -->
+            <th bzHeaderColumn bzSortColumn="name" scope="col">{{ 'detail.Utente.name' | translate }}</th>
+            <td *bzColumnDef="let element" class="fk-pointer" (click)="selectElement(element)">
+                {{ element.name }}
+            </td>
+            <!-- Surname -->
+            <th bzHeaderColumn bzSortColumn="surname" scope="col">{{ 'detail.Utente.surname' | translate }}</th>
+            <td *bzColumnDef="let element" class="fk-pointer" (click)="selectElement(element)">
+                {{ element.surname }}
+            </td>
+            <!-- Email -->
+            <th bzHeaderColumn bzSortColumn="email" scope="col">{{ 'detail.Utente.email' | translate }}</th>
+            <td *bzColumnDef="let element" class="fk-pointer" (click)="selectElement(element)">
+                {{ element.email }}
+            </td>
+            <!-- Oauth Id -->
+            <th bzHeaderColumn bzSortColumn="oauthId" scope="col">{{ 'detail.Utente.oauthId' | translate }}</th>
+            <td *bzColumnDef="let element" class="fk-pointer" (click)="selectElement(element)">
+                {{ element.oauthId }}
+            </td>
+            <!-- Is Admin -->
+            <th bzHeaderColumn bzSortColumn="isAdmin" scope="col">{{ 'detail.Utente.isAdmin' | translate }}</th>
+            <td *bzColumnDef="let element" class="fk-pointer" (click)="selectElement(element)">
+                {{ element.isAdmin | siNo }}
+            </td>
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.Utente.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>

@@ -1,0 +1,25 @@
+[comment encoding = UTF-8 /]
+[module main('http://www.eclipse.org/uml2/5.0.0/UML')/]
+
+[import it::micegroup::voila2::cartridge::library::javaservice::wrapper::modelUtils/]
+[import it::micegroup::voila2::cartridge::library::javaservice::wrapper::exceptionHandlerUtils/]
+[import it::micegroup::voila2::cartridge::library::javaservice::wrapper::validationUtils/]
+
+[comment]LOGGER[/comment]
+[import it::micegroup::voila2::cartridge::library::logger::consoleUtils/]
+[import it::micegroup::voila2::cartridge::library::logger::severityLevel/]
+
+[comment]COMPONENTS[/comment]
+[import it::micegroup::voila2::cartridge::components::templates::mainComponents/]
+
+[template public mainClass(aModel : Model){cExceptions: Boolean = aModel.hasDiagramExceptions();}]
+[comment @main /]
+[if(validateComponentDiagram())]
+[if(aModel.isRoot())]
+	[consoleMessage(getInfoSeverity(), '***ROOT GENERATION***')/]
+	[genComponentsMain()/]
+[/if]
+
+[consoleMessage(getInfoSeverity(), 'Transformation Completed')/]
+[/if]
+[/template]

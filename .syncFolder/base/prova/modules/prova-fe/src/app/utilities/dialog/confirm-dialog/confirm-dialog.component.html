@@ -1,0 +1,16 @@
+<bz-card [size]="cardSize" global>
+    <bz-card-header> 
+          <i class="header-icon {{icon}}" aria-hidden="true"></i>
+           <span class="title">{{title}}</span>
+          <i class="fa fa-times fk-pointer fk-right" (click) = "dialogService.closeDialog()" aria-hidden="true"></i>
+    </bz-card-header>
+    <bz-card-content>
+      <div>{{message}}</div>
+    </bz-card-content>
+    <bz-card-footer  >
+        <div class="fk-center">
+            <button bzButton status="primary" class="button-right" (click)="dialogService.closeDialog()">Annulla</button>
+            <button bzButton status="primary" class="fk-right" (click) = "dialogService.sendData(true)">Ok</button>
+        </div>
+    </bz-card-footer>
+</bz-card>

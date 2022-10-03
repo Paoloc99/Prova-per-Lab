@@ -1,0 +1,34 @@
+version: '3'
+services:
+  db:
+    image: dockerpush.micegroup.it/mysql-prova:5.7
+    build:
+      context: ./
+      dockerfile: DockerfileMysql
+  prova-ms-store:
+    image: dockerpush.micegroup.it/prova-ms-store:0.0.1-SNAPSHOT
+    build:
+      context: modules/prova-be/prova-ms-store
+      dockerfile: Dockerfile
+  prova-ms-database:
+    image: dockerpush.micegroup.it/prova-ms-database:0.0.1-SNAPSHOT
+    build:
+      context: modules/prova-be/prova-ms-database
+      dockerfile: Dockerfile
+  prova-frontend-base:
+    image: dockerpush.micegroup.it/prova-frontend-base:0.0.1-SNAPSHOT
+    build:
+      context: modules/prova-fe
+      dockerfile: DockerfileFeBase
+
+  prova-frontend:
+    image: dockerpush.micegroup.it/prova-frontend:0.0.1-SNAPSHOT
+    build:
+      context: modules/prova-fe
+      dockerfile: Dockerfile
+  prova-gateway:
+    image: dockerpush.micegroup.it/prova-gateway:0.0.1-SNAPSHOT
+    build:
+      context: modules/prova-be/prova-gateway
+      dockerfile: Dockerfile
+

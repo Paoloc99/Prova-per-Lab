@@ -1,0 +1,55 @@
+<bz-card [bzSpinner]="spinner">
+    <!-- card header -->
+    <bz-card-header class="fk-main-header">
+        {{ 'header.list' | translate: { name: 'detail.OrderItem.labels' | translate } }}
+    </bz-card-header>
+
+    <bz-card-content>
+        {{ 'Order Item' | tableInfo: totalElements:page:pageSize }}
+        <!-- Tabella tipo orderItem -->
+        <bz-table
+            [sources]="orderItemList"
+            cssClass="fk-table-stripped fk-table-bordered fk-table-readonly"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginateTable($event, orderItemCriteria)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- Ordine -->
+            <th bzHeaderColumn scope="col">{{ 'detail.OrderItem.theOrdine' | translate }}</th>
+            <td *bzColumnDef="let orderItem">
+                <div class="fk-pointer" (click)="navigateToView(orderItem.objectKey)">{{ orderItem.theOrdineObjectTitle }}</div>
+            </td>
+            <!-- Product -->
+            <th bzHeaderColumn scope="col">{{ 'detail.OrderItem.theProduct' | translate }}</th>
+            <td *bzColumnDef="let orderItem">
+                <div class="fk-pointer" (click)="navigateToView(orderItem.objectKey)">{{ orderItem.theProductObjectTitle }}</div>
+            </td>
+
+            <!-- Amount -->
+            <th bzHeaderColumn bzSortColumn="amount" scope="col" align="right">{{ 'detail.OrderItem.amount' | translate }}</th>
+            <td *bzColumnDef="let orderItem" align="right">{{ orderItem.amount }}</td>
+
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.OrderItem.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>
+
+<!-- Search with criteria -->
+<app-search-order-item (submit)="searchWithCriteria()"></app-search-order-item>
+
+<!-- Buttons -->
+<bz-buttons-panel fixed>
+    <button bzButton status="primary" class="button" (click)="searchWithCriteria()">{{ 'buttons.search' | translate }}</button>
+    <button
+        bzButton
+        status="primary"
+        class="button"
+        *ngIf="Privileges?.ORDER_ITEM_CREATE | hasPermission: privileges"
+        routerLink="/pages/ms-store/order-item/detail-order-item/new"
+    >
+        {{ 'buttons.new' | translate: { '0': ' ' } }}
+    </button>
+</bz-buttons-panel>

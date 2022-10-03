@@ -1,0 +1,132 @@
+<form [formGroup]="orderItemForm">
+    <bz-card>
+        <bz-card-header class="fk-main-header">
+            {{ 'header.detail' | translate: { name: 'detail.OrderItem.label' | translate } }}
+            <em bzTooltip="{{ 'detail.OrderItem.tooltip' | translate }}" class="fa fa-question-circle"></em>
+        </bz-card-header>
+
+        <bz-card-content>
+            <ng-container *ngIf="pageStatus | hasPageStatus: ['new', 'edit']">
+                <!-- Ordine   -->
+                <bz-dropdown
+                    label="{{ 'detail.OrderItem.theOrdine' | translate }}*:"
+                    [options]="ordineList"
+                    optionLabel="objectTitle"
+                    optionValue="objectKey"
+                    formControlName="theOrdineObjectKey"
+                >
+                    <bz-error *ngFor="let err of errorsFor(orderItemForm, 'theOrdineObjectKey')">
+                        {{ err.key | translate: getParams('detail.OrderItem.theOrdine' | translate, err.params) }}
+                    </bz-error>
+                </bz-dropdown>
+
+                <!-- Product   -->
+                <bz-dropdown
+                    label="{{ 'detail.OrderItem.theProduct' | translate }}*:"
+                    [options]="productList"
+                    optionLabel="objectTitle"
+                    optionValue="objectKey"
+                    formControlName="theProductObjectKey"
+                >
+                    <bz-error *ngFor="let err of errorsFor(orderItemForm, 'theProductObjectKey')">
+                        {{ err.key | translate: getParams('detail.OrderItem.theProduct' | translate, err.params) }}
+                    </bz-error>
+                </bz-dropdown>
+
+                <!-- Amount-->
+                <bz-input
+                    label="{{ 'detail.OrderItem.amount' | translate }}:"
+                    formControlName="amount"
+                    bzTooltip="{{ 'detail.OrderItem.tooltip.amount' | translate }}"
+                    type="number"
+                >
+                    <bz-error *ngFor="let err of errorsFor(orderItemForm, 'amount')">
+                        {{ err.key | translate: getParams('detail.OrderItem.amount' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+            </ng-container>
+
+            <div *ngIf="pageStatus | hasPageStatus: 'view'">
+                <!-- Amount -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.OrderItem.amount' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ orderItem?.amount }}</strong>
+                    </div>
+                </div>
+
+                <!--Ordine-->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.OrderItem.theOrdine' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ orderItem?.theOrdineObjectTitle }}</strong>
+                    </div>
+                </div>
+                <!--Product-->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.OrderItem.theProduct' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ orderItem?.theProductObjectTitle }}</strong>
+                    </div>
+                </div>
+            </div>
+        </bz-card-content>
+    </bz-card>
+
+    <!-- Buttons -->
+    <bz-buttons-panel fixed>
+        <button bzButton status="primary" type="button" (click)="buttonsService.goBack()">{{ 'buttons.goBack' | translate }}</button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'new') && (Privileges?.ORDER_ITEM_CREATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="insertOrderItem()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.ORDER_ITEM_FIND_BY_ID | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="editOrderItem()"
+            type="button"
+        >
+            {{ 'buttons.edit' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'edit') && (Privileges?.ORDER_ITEM_UPDATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="updateOrderItem()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: ['view']) && (Privileges?.ORDER_ITEM_DELETE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="confirmDeleteOrderItem()"
+        >
+            {{ 'buttons.delete' | translate }}
+        </button>
+        <button
+            bzButton
+            status="primary"
+            class="button"
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.ORDER_ITEM_CREATE | hasPermission: privileges)"
+            routerLink="/pages/ms-store/order-item/detail-order-item/new"
+        >
+            {{ 'buttons.new' | translate: { '0': ' ' } }}
+        </button>
+    </bz-buttons-panel>
+</form>

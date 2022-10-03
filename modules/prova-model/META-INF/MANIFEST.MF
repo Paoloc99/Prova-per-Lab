@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: prova
+Bundle-SymbolicName: prova
+Bundle-Version: 1.0.0.qualifier
+Export-Package: it.micegroup.prova.model
+Require-Bundle: it.micegroup.voila2.cartridge.components;bundle-version="1.0.0",
+ org.eclipse.acceleo.engine,
+ it.micegroup.voila2.cartridge.library;bundle-version="1.0.0"
+Automatic-Module-Name: prova
+Bundle-RequiredExecutionEnvironment: JavaSE-11

@@ -1,0 +1,11 @@
+@import './italiaPA-theme.scss';
+@import './black-theme.scss';
+@import './blue-theme.scss';
+@import 'node_modules/@micegroup/voila2-blazing-ng/src/lib/theme/_mixins.scss';
+@import './theme-map.scss';
+
+@include registerThemeByParent($italiaPA-theme, 'light', 'italiaPA-theme');
+@include registerThemeByParent($blue-theme, 'light', 'blue-theme');
+@include registerThemeByParent($black-theme, 'light', 'black-theme');
+@include registerThemeByParent($poste-theme, 'light', 'poste-theme');
+@include setThemes();

@@ -1,0 +1,86 @@
+<div class="fk-row">
+  <div class="fk-col-9" style="margin-bottom:20px;">
+
+    <bz-card>
+    	<bz-card-content>
+	      <div class="fk-space">
+	        <strong class="card-title">Profitti totali annui</strong> <strong class="card-label"> 5.500.000 €</strong>
+	        <div bzPseudoButton status="primary" class="card-test"> <i class="fa fa-money" aria-hidden="true"></i></div>
+	      </div>
+	    </bz-card-content>
+    </bz-card>
+
+
+  </div>
+
+  <div class="fk-col-9" style="margin-bottom:20px">
+
+    <bz-card>
+    	<bz-card-content>
+	      <div class="fk-space">
+	        <strong class="card-title">Numero di vendite settimanali</strong> <strong class="card-label"> 100.000 </strong>
+	        <div bzPseudoButton status="primary" class="card-test"> <i class="fa fa-shopping-cart"
+	            aria-hidden="true"></i></div>
+	      </div>
+	    </bz-card-content>
+    </bz-card>
+
+
+  </div>
+
+</div>
+
+
+<div class="fk-row">
+  <!--  Sales table -->
+  <div class="fk-col-7">
+    <app-list-last-sales></app-list-last-sales>
+  </div>
+  <!-- Order graph -->
+  <div class="fk-col-11">
+    <bz-card>
+    	<bz-card-content>
+	      <bz-tabset [fullWidth]="true">
+	        <bz-tab tabTitle="Ordine">
+	          <div class="chart-container">
+	            <app-order-chart [ordersChartData]="ordersChartData"></app-order-chart>
+	          </div>
+	        </bz-tab>
+	        <bz-tab tabTitle="Profitto">
+	          <div class="chart-container">
+	
+	
+	            <div echarts [options]="option" class="echart chart-height">
+	            </div>
+	
+	
+	          </div>
+	        </bz-tab>
+	      </bz-tabset>
+	   </bz-card-content>
+    </bz-card>
+  </div>
+</div>
+
+
+
+
+
+<div class="fk-row" style="margin-top:20px">
+  <div class="fk-col-12">
+    <app-sales-overview></app-sales-overview>
+  </div>
+  <div class="fk-col-6">
+    <bz-card>
+      <bz-card-header>
+        Età media dei clienti
+      </bz-card-header>
+      <bz-card-content>
+      	<app-client-age></app-client-age>
+      </bz-card-content>
+    </bz-card>
+
+  </div>
+
+</div>
+

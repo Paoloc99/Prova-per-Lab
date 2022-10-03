@@ -1,0 +1,176 @@
+<form [formGroup]="ordineForm">
+    <bz-card>
+        <bz-card-header class="fk-main-header">
+            {{ 'header.detail' | translate: { name: 'detail.Ordine.label' | translate } }}
+            <em bzTooltip="{{ 'detail.Ordine.tooltip' | translate }}" class="fa fa-question-circle"></em>
+        </bz-card-header>
+
+        <bz-card-content>
+            <ng-container *ngIf="pageStatus | hasPageStatus: ['new', 'edit']">
+                <!-- Ordine Id-->
+                <bz-input
+                    label="{{ 'detail.Ordine.ordineId' | translate }}*:"
+                    formControlName="ordineId"
+                    bzTooltip="{{ 'detail.Ordine.tooltip.ordineId' | translate }}"
+                    type="number"
+                    [disableAttr]="pageStatus | hasPageStatus: 'edit'"
+                >
+                    <bz-error *ngFor="let err of errorsFor(ordineForm, 'ordineId')">
+                        {{ err.key | translate: getParams('detail.Ordine.ordineId' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Date-->
+                <bz-date-picker label="{{ 'detail.Ordine.date' | translate }}:" controlName="date" bzTooltip="{{ 'detail.Ordine.tooltip.date' | translate }}" type="Date">
+                    <bz-error *ngFor="let err of errorsFor(ordineForm, 'date')">
+                        {{ err.key | translate: getParams('detail.Ordine.date' | translate, err.params) }}
+                    </bz-error>
+                </bz-date-picker>
+
+                <!-- Total Cost-->
+                <bz-input
+                    label="{{ 'detail.Ordine.totalCost' | translate }}:"
+                    formControlName="totalCost"
+                    bzTooltip="{{ 'detail.Ordine.tooltip.totalCost' | translate }}"
+                    type="number"
+                >
+                    <bz-error *ngFor="let err of errorsFor(ordineForm, 'totalCost')">
+                        {{ err.key | translate: getParams('detail.Ordine.totalCost' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Attribute-->
+
+                <bz-input
+                    label="{{ 'detail.Ordine.attribute' | translate }}:"
+                    formControlName="attribute"
+                    bzTooltip="{{ 'detail.Ordine.tooltip.attribute' | translate }}"
+                    type="string"
+                >
+                    <bz-error *ngFor="let err of errorsFor(ordineForm, 'attribute')">
+                        {{ err.key | translate: getParams('detail.Ordine.attribute' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Utente   -->
+                <bz-dropdown
+                    label="{{ 'detail.Ordine.theUtente' | translate }}*:"
+                    [options]="utenteList"
+                    optionLabel="objectTitle"
+                    optionValue="objectKey"
+                    formControlName="theUtenteObjectKey"
+                >
+                    <bz-error *ngFor="let err of errorsFor(ordineForm, 'theUtenteObjectKey')">
+                        {{ err.key | translate: getParams('detail.Ordine.theUtente' | translate, err.params) }}
+                    </bz-error>
+                </bz-dropdown>
+            </ng-container>
+
+            <div *ngIf="pageStatus | hasPageStatus: 'view'">
+                <!-- Ordine Id -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Ordine.ordineId' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ ordine?.ordineId }}</strong>
+                    </div>
+                </div>
+
+                <!-- Date -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Ordine.date' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ ordine?.date | date: 'dd/MM/yyyy ' }}</strong>
+                    </div>
+                </div>
+
+                <!-- Total Cost -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Ordine.totalCost' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ ordine?.totalCost }}</strong>
+                    </div>
+                </div>
+
+                <!-- Attribute -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Ordine.attribute' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ ordine?.attribute }}</strong>
+                    </div>
+                </div>
+
+                <!--Utente-->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Ordine.theUtente' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ ordine?.theUtenteObjectTitle }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!--Tabs ordine -->
+            <app-tabs-ordine [formGroup]="ordineForm" [entity]="ordine" [pageStatus]="tabPageStatus"></app-tabs-ordine>
+        </bz-card-content>
+    </bz-card>
+
+    <!-- Buttons -->
+    <bz-buttons-panel fixed>
+        <button bzButton status="primary" type="button" (click)="buttonsService.goBack()">{{ 'buttons.goBack' | translate }}</button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'new') && (Privileges?.ORDINE_CREATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="insertOrdine()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.ORDINE_FIND_BY_ID | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="editOrdine()"
+            type="button"
+        >
+            {{ 'buttons.edit' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'edit') && (Privileges?.ORDINE_UPDATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="updateOrdine()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: ['view']) && (Privileges?.ORDINE_DELETE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="confirmDeleteOrdine()"
+        >
+            {{ 'buttons.delete' | translate }}
+        </button>
+        <button
+            bzButton
+            status="primary"
+            class="button"
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.ORDINE_CREATE | hasPermission: privileges)"
+            routerLink="/pages/ms-demo/ordine/detail-ordine/new"
+        >
+            {{ 'buttons.new' | translate: { '0': ' ' } }}
+        </button>
+    </bz-buttons-panel>
+</form>

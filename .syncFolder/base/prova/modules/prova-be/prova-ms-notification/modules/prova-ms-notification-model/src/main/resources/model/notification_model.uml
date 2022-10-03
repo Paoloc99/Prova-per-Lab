@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Voila2Profile="http://www.micegroup.it/micegen/1.0/profiles/vittorio.profile.uml" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.micegroup.it/micegen/1.0/profiles/vittorio.profile.uml ../../../../../prova-model/src/main/resources/model/profile/Voila2Profile.profile.uml#_2B4tILHGEey3R-rGUHEufw">
+  <uml:Model xmi:id="_pFUHsJBUEeqJxf3DRt3goQ" name="notification_model">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_DFMpwJBYEeqMb4ASTcZJ7A">
+      <importedPackage xmi:type="uml:Model" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_evP3MF7oEeSfhavZKeSCvQ"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Class" xmi:id="_1ldOgJBUEeqJxf3DRt3goQ" name="MailTemplate">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_muAmMJBhEeqYwcOihWmjJw" name="mailTemplateId" isID="true">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_1nlCgJBhEeqYwcOihWmjJw" name="mailTemplateDescription">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3ihFMJBhEeqYwcOihWmjJw" name="mailSubject">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_5jal8JBhEeqYwcOihWmjJw" name="mailBodyHtml">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7RnNIJBhEeqYwcOihWmjJw" name="mailBodyText">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_9DkS8JBhEeqYwcOihWmjJw" name="mailFrom">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-jwTUJBhEeqYwcOihWmjJw" name="mailTo">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__g_XoJBhEeqYwcOihWmjJw" name="mailCc" visibility="public">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Fix68JBiEeqYwcOihWmjJw" name="mailBcc">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Hgb6cJBiEeqYwcOihWmjJw" name="mailReplyTo">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_KWLYgJBiEeqYwcOihWmjJw" name="skipTitle">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_VTWCQI6sEem14KOYXGyWvg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_MoJbIJBiEeqYwcOihWmjJw" name="abilitaNotificheEmail">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_VTWCQI6sEem14KOYXGyWvg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_O_lMkJBiEeqYwcOihWmjJw" name="attachments">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7MfvgJBUEeqJxf3DRt3goQ" name="MailStyle">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_gLWVAJBiEeqYwcOihWmjJw" name="mailStyleId" isID="true">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_j-TpQJBiEeqYwcOihWmjJw" name="mailStyleDescription">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_mCypgJBiEeqYwcOihWmjJw" name="mailStyleHeader">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_nrXJ0JBiEeqYwcOihWmjJw" name="mailStyleFooter">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_9tDAsJBUEeqJxf3DRt3goQ" name="MailConfig">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2rgwQJBXEeqMb4ASTcZJ7A" name="mailConfigId" isID="true">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ly9pUJBYEeqYwcOihWmjJw" name="mailConfigDescription">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_qi140JBYEeqYwcOihWmjJw" name="abilitaNotificheEmail">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_VTWCQI6sEem14KOYXGyWvg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_y26HIJBgEeqYwcOihWmjJw" name="mailNameHost">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_144DUJBgEeqYwcOihWmjJw" name="mailPort">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_7mhj8GXMEeS6oYa1-DNoRQ"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_3WU4wJBgEeqYwcOihWmjJw" name="mailCrypto">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="__pMt4JBgEeqYwcOihWmjJw" name="mailSPA">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_VTWCQI6sEem14KOYXGyWvg"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_DEK_8JBhEeqYwcOihWmjJw" name="mailUsername">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_FFVmcJBhEeqYwcOihWmjJw" name="mailPassword">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_GTL5oJBhEeqYwcOihWmjJw" name="mailDefaultSubject">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IWktsJBhEeqYwcOihWmjJw" name="mailFromAddress">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_KKsWsJBhEeqYwcOihWmjJw" name="mailCcAddress">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_MKRBwJBhEeqYwcOihWmjJw" name="mailBccAddress">
+        <type xmi:type="uml:Class" href="../../../../../prova-model/src/main/resources/model/domain/domain_model.uml#_9QchYGXHEeSsuain6PCLSw"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_SzF6cJBiEeqYwcOihWmjJw" name="ManyToOneRelation6" memberEnd="_SzPrcpBiEeqYwcOihWmjJw _SzPrc5BiEeqYwcOihWmjJw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_SzPrcJBiEeqYwcOihWmjJw" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SzPrcZBiEeqYwcOihWmjJw" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_SzPrcpBiEeqYwcOihWmjJw" type="_9tDAsJBUEeqJxf3DRt3goQ" association="_SzF6cJBiEeqYwcOihWmjJw">
+        <name xsi:nil="true"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_SzPrc5BiEeqYwcOihWmjJw" type="_1ldOgJBUEeqJxf3DRt3goQ" association="_SzF6cJBiEeqYwcOihWmjJw">
+        <name xsi:nil="true"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_SzPrd5BiEeqYwcOihWmjJw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_SzPreJBiEeqYwcOihWmjJw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_rUhB0JBiEeqYwcOihWmjJw" name="ManyToOneRelation7" memberEnd="_rUqLwpBiEeqYwcOihWmjJw _rUqLw5BiEeqYwcOihWmjJw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_rUqLwJBiEeqYwcOihWmjJw" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_rUqLwZBiEeqYwcOihWmjJw" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_rUqLwpBiEeqYwcOihWmjJw" type="_7MfvgJBUEeqJxf3DRt3goQ" association="_rUhB0JBiEeqYwcOihWmjJw">
+        <name xsi:nil="true"/>
+      </ownedEnd>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_rUqLw5BiEeqYwcOihWmjJw" type="_1ldOgJBUEeqJxf3DRt3goQ" association="_rUhB0JBiEeqYwcOihWmjJw">
+        <name xsi:nil="true"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_rUqLx5BiEeqYwcOihWmjJw"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_rUqLyJBiEeqYwcOihWmjJw" value="*"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Actor" xmi:id="_CDJSIMovEemd8Iho5Ncepg" name="Generator"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDJSIcovEemd8Iho5Ncepg" name="Attachment"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDJSIsovEemd8Iho5Ncepg" name="AdvancedCrud"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDJSI8ovEemd8Iho5Ncepg" name="BasicPdfCsvExport"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDJSJMovEemd8Iho5Ncepg" name="RtfTemplate"/>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDJSJcovEemd8Iho5Ncepg" name="History"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDJSJsovEemd8Iho5Ncepg" memberEnd="_CDJSKcovEemd8Iho5Ncepg _CDJSKsovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDJSJ8ovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDJSKMovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDJSKcovEemd8Iho5Ncepg" name="attachment" type="_CDJSIcovEemd8Iho5Ncepg" association="_CDJSJsovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDJSKsovEemd8Iho5Ncepg" name="generator" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDJSJsovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDLuYMovEemd8Iho5Ncepg" memberEnd="_CDLuY8ovEemd8Iho5Ncepg _CDLuZMovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDLuYcovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDLuYsovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuY8ovEemd8Iho5Ncepg" name="advancedcrud" type="_CDJSIsovEemd8Iho5Ncepg" association="_CDLuYMovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuZMovEemd8Iho5Ncepg" name="generator" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDLuYMovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDLuZcovEemd8Iho5Ncepg" memberEnd="_CDLuaMovEemd8Iho5Ncepg _CDLuacovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDLuZsovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDLuZ8ovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuaMovEemd8Iho5Ncepg" name="basicpdfcsvexport" type="_CDJSI8ovEemd8Iho5Ncepg" association="_CDLuZcovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuacovEemd8Iho5Ncepg" name="generator" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDLuZcovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDLuasovEemd8Iho5Ncepg" memberEnd="_CDLubcovEemd8Iho5Ncepg _CDLubsovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDLua8ovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDLubMovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLubcovEemd8Iho5Ncepg" name="rtftemplate" type="_CDJSJMovEemd8Iho5Ncepg" association="_CDLuasovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLubsovEemd8Iho5Ncepg" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDLuasovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDLub8ovEemd8Iho5Ncepg" memberEnd="_CDLucsovEemd8Iho5Ncepg _CDLuc8ovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDLucMovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDLuccovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLucsovEemd8Iho5Ncepg" name="history" type="_CDJSJcovEemd8Iho5Ncepg" association="_CDLub8ovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuc8ovEemd8Iho5Ncepg" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDLub8ovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDLudMovEemd8Iho5Ncepg" name="Email"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDLudcovEemd8Iho5Ncepg" memberEnd="_CDLueMovEemd8Iho5Ncepg _CDLuecovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDLudsovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDLud8ovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLueMovEemd8Iho5Ncepg" name="email" type="_CDLudMovEemd8Iho5Ncepg" association="_CDLudcovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuecovEemd8Iho5Ncepg" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDLudcovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDLuesovEemd8Iho5Ncepg" name="Security"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDLue8ovEemd8Iho5Ncepg" memberEnd="_CDLufsovEemd8Iho5Ncepg _CDLuf8ovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDLufMovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDLufcovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLufsovEemd8Iho5Ncepg" name="security" type="_CDLuesovEemd8Iho5Ncepg" association="_CDLue8ovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDLuf8ovEemd8Iho5Ncepg" name="generator" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDLue8ovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:UseCase" xmi:id="_CDOKoMovEemd8Iho5Ncepg" name="Caching"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_CDOKocovEemd8Iho5Ncepg" memberEnd="_CDOKpMovEemd8Iho5Ncepg _CDOKpcovEemd8Iho5Ncepg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_CDOKosovEemd8Iho5Ncepg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_CDOKo8ovEemd8Iho5Ncepg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDOKpMovEemd8Iho5Ncepg" name="copyof_security_48" type="_CDOKoMovEemd8Iho5Ncepg" association="_CDOKocovEemd8Iho5Ncepg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_CDOKpcovEemd8Iho5Ncepg" name="generator" type="_CDJSIMovEemd8Iho5Ncepg" association="_CDOKocovEemd8Iho5Ncepg"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0lzIUJBUEeqJxf3DRt3goQ">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_p_fIgC2_Eey7is5p_AQmgg" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p_fIgS2_Eey7is5p_AQmgg" key="Version" value="0.1.94"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p_fIgi2_Eey7is5p_AQmgg" key="Comment" value=" "/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p_fIgy2_Eey7is5p_AQmgg" key="Copyright" value="Micegroup"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p_fIhC2_Eey7is5p_AQmgg" key="Date" value="2022-04-01"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_p_fIhS2_Eey7is5p_AQmgg" key="Author" value="Vittorio Niespolo"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0lzIUZBUEeqJxf3DRt3goQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="../../../../../prova-model/src/main/resources/model/profile/Voila2Profile.profile.uml#_2B4tILHGEey3R-rGUHEufw"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="../../../../../prova-model/src/main/resources/model/profile/Voila2Profile.profile.uml#_4bYY0HGpEemXefQhp2Zwuw"/>
+    </profileApplication>
+  </uml:Model>
+  <Voila2Profile:Entity xmi:id="_1ldOgZBUEeqJxf3DRt3goQ" base_NamedElement="_1ldOgJBUEeqJxf3DRt3goQ" id="16464015024876" base_Class="_1ldOgJBUEeqJxf3DRt3goQ" category="mail"/>
+  <Voila2Profile:Entity xmi:id="_7MfvgZBUEeqJxf3DRt3goQ" base_NamedElement="_7MfvgJBUEeqJxf3DRt3goQ" id="16464015024877" base_Class="_7MfvgJBUEeqJxf3DRt3goQ" category="mail"/>
+  <Voila2Profile:Entity xmi:id="_9tDAsZBUEeqJxf3DRt3goQ" base_NamedElement="_9tDAsJBUEeqJxf3DRt3goQ" id="16464015024878" base_Class="_9tDAsJBUEeqJxf3DRt3goQ" role="null" category="mail"/>
+  <Voila2Profile:Attribute xmi:id="_2r5KwJBXEeqMb4ASTcZJ7A" base_NamedElement="_2rgwQJBXEeqMb4ASTcZJ7A" base_Property="_2rgwQJBXEeqMb4ASTcZJ7A"/>
+  <Voila2Profile:Attribute xmi:id="_lzHaUJBYEeqYwcOihWmjJw" base_NamedElement="_ly9pUJBYEeqYwcOihWmjJw" base_Property="_ly9pUJBYEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_qi4VEJBYEeqYwcOihWmjJw" base_NamedElement="_qi140JBYEeqYwcOihWmjJw" base_Property="_qi140JBYEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_y3DREJBgEeqYwcOihWmjJw" base_NamedElement="_y26HIJBgEeqYwcOihWmjJw" base_Property="_y26HIJBgEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_144DUZBgEeqYwcOihWmjJw" base_NamedElement="_144DUJBgEeqYwcOihWmjJw" base_Property="_144DUJBgEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_3WU4wZBgEeqYwcOihWmjJw" base_NamedElement="_3WU4wJBgEeqYwcOihWmjJw" base_Property="_3WU4wJBgEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="__pMt4ZBgEeqYwcOihWmjJw" base_NamedElement="__pMt4JBgEeqYwcOihWmjJw" base_Property="__pMt4JBgEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_DEK_8ZBhEeqYwcOihWmjJw" base_NamedElement="_DEK_8JBhEeqYwcOihWmjJw" base_Property="_DEK_8JBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_FFYCsJBhEeqYwcOihWmjJw" base_NamedElement="_FFVmcJBhEeqYwcOihWmjJw" base_Property="_FFVmcJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_GTL5oZBhEeqYwcOihWmjJw" base_NamedElement="_GTL5oJBhEeqYwcOihWmjJw" base_Property="_GTL5oJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_IWktsZBhEeqYwcOihWmjJw" base_NamedElement="_IWktsJBhEeqYwcOihWmjJw" base_Property="_IWktsJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_KKsWsZBhEeqYwcOihWmjJw" base_NamedElement="_KKsWsJBhEeqYwcOihWmjJw" base_Property="_KKsWsJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_MKRBwZBhEeqYwcOihWmjJw" base_NamedElement="_MKRBwJBhEeqYwcOihWmjJw" base_Property="_MKRBwJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_muAmMZBhEeqYwcOihWmjJw" base_NamedElement="_muAmMJBhEeqYwcOihWmjJw" base_Property="_muAmMJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_1nlCgZBhEeqYwcOihWmjJw" base_NamedElement="_1nlCgJBhEeqYwcOihWmjJw" base_Property="_1nlCgJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_3iqPIJBhEeqYwcOihWmjJw" base_NamedElement="_3ihFMJBhEeqYwcOihWmjJw" base_Property="_3ihFMJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_5jal8ZBhEeqYwcOihWmjJw" base_NamedElement="_5jal8JBhEeqYwcOihWmjJw" base_Property="_5jal8JBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_7RnNIZBhEeqYwcOihWmjJw" base_NamedElement="_7RnNIJBhEeqYwcOihWmjJw" base_Property="_7RnNIJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_9DkS8ZBhEeqYwcOihWmjJw" base_NamedElement="_9DkS8JBhEeqYwcOihWmjJw" base_Property="_9DkS8JBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_-jwTUZBhEeqYwcOihWmjJw" base_NamedElement="_-jwTUJBhEeqYwcOihWmjJw" base_Property="_-jwTUJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="__hBz4JBhEeqYwcOihWmjJw" base_NamedElement="__g_XoJBhEeqYwcOihWmjJw" base_Property="__g_XoJBhEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_Fix68ZBiEeqYwcOihWmjJw" base_NamedElement="_Fix68JBiEeqYwcOihWmjJw" base_Property="_Fix68JBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_Hgb6cZBiEeqYwcOihWmjJw" base_NamedElement="_Hgb6cJBiEeqYwcOihWmjJw" base_Property="_Hgb6cJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_KWLYgZBiEeqYwcOihWmjJw" base_NamedElement="_KWLYgJBiEeqYwcOihWmjJw" base_Property="_KWLYgJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_MoL3YJBiEeqYwcOihWmjJw" base_NamedElement="_MoJbIJBiEeqYwcOihWmjJw" base_Property="_MoJbIJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_O_lMkZBiEeqYwcOihWmjJw" base_NamedElement="_O_lMkJBiEeqYwcOihWmjJw" base_Property="_O_lMkJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:ManyToOneRelation xmi:id="_SzPrdJBiEeqYwcOihWmjJw" base_Association="_SzF6cJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_gLWVAZBiEeqYwcOihWmjJw" base_NamedElement="_gLWVAJBiEeqYwcOihWmjJw" base_Property="_gLWVAJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_j-TpQZBiEeqYwcOihWmjJw" base_NamedElement="_j-TpQJBiEeqYwcOihWmjJw" base_Property="_j-TpQJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_mCypgZBiEeqYwcOihWmjJw" base_NamedElement="_mCypgJBiEeqYwcOihWmjJw" base_Property="_mCypgJBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:Attribute xmi:id="_nrXJ0ZBiEeqYwcOihWmjJw" base_NamedElement="_nrXJ0JBiEeqYwcOihWmjJw" base_Property="_nrXJ0JBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:ManyToOneRelation xmi:id="_rUqLxJBiEeqYwcOihWmjJw" base_Association="_rUhB0JBiEeqYwcOihWmjJw"/>
+  <Voila2Profile:EntitySpecificFeature xmi:id="_K_bbMMowEemd8Iho5Ncepg" base_UseCase="_CDJSI8ovEemd8Iho5Ncepg"/>
+  <Voila2Profile:EntitySpecificFeature xmi:id="_L3S3UMowEemd8Iho5Ncepg" base_UseCase="_CDJSJMovEemd8Iho5Ncepg"/>
+  <Voila2Profile:EntitySpecificFeature xmi:id="_MqFmMMowEemd8Iho5Ncepg" base_UseCase="_CDJSJcovEemd8Iho5Ncepg"/>
+  <Voila2Profile:EntitySpecificFeature xmi:id="_NaNbkMowEemd8Iho5Ncepg" base_UseCase="_CDOKoMovEemd8Iho5Ncepg"/>
+  <Voila2Profile:GenericFeature xmi:id="_OKLf8MowEemd8Iho5Ncepg" base_UseCase="_CDLuesovEemd8Iho5Ncepg"/>
+  <Voila2Profile:GenericFeature xmi:id="_O6wBQMowEemd8Iho5Ncepg" base_UseCase="_CDLudMovEemd8Iho5Ncepg"/>
+  <Voila2Profile:EntitySpecificFeature xmi:id="_QWJoQMowEemd8Iho5Ncepg" base_UseCase="_CDJSIsovEemd8Iho5Ncepg"/>
+  <Voila2Profile:EntitySpecificFeature xmi:id="_RJo6sMowEemd8Iho5Ncepg" base_UseCase="_CDJSIcovEemd8Iho5Ncepg"/>
+  <Voila2Profile:Model xmi:id="_m-K7QKg2Eeu6PPF0UP0AwQ" base_NamedElement="_pFUHsJBUEeqJxf3DRt3goQ" base_Model="_pFUHsJBUEeqJxf3DRt3goQ" category="mainMS"/>
+</xmi:XMI>

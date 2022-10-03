@@ -1,0 +1,6 @@
+<bz-tabset (changeTab)="onChangeTab($event)">
+    <!--  Tab ordine -->
+    <bz-tab tabTitle="Ordine" tabName="ORDINE" [showIf]="(Privileges?.UTENTE_FIND_BY_THE_ORDINE_OBJECT_KEY | hasPermission: privileges) && (pageStatus | isReadOnly: true)">
+        <app-tab-ordine [formGroup]="formGroup" [tab]="activeTab" [entity]="entity" [pageStatus]="pageStatus" [readonly]="true"></app-tab-ordine>
+    </bz-tab>
+</bz-tabset>

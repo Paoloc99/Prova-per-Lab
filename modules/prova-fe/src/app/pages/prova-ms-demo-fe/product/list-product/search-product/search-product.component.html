@@ -1,0 +1,34 @@
+<bz-card class="fk-p-mt-50" isCollapsable>
+    <!-- card header -->
+    <bz-card-header>
+        {{ 'header.search' | translate }}
+    </bz-card-header>
+
+    <bz-card-content>
+        <form [formGroup]="searchProductForm" (keyup.enter)="submitForm()">
+            <!-- Product Id -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.productId' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="productIdFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.productId' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="productIdTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+        </form>
+    </bz-card-content>
+</bz-card>

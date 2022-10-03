@@ -1,0 +1,10 @@
+<bz-tabset (changeTab)="onChangeTab($event)">
+    <!--  Tab order item -->
+    <bz-tab
+        tabTitle="Order Item"
+        tabName="ORDER_ITEM"
+        [showIf]="(Privileges?.PRODUCT_FIND_BY_THE_ORDER_ITEM_OBJECT_KEY | hasPermission: privileges) && (pageStatus | isReadOnly: false)"
+    >
+        <app-tab-order-item [formGroup]="formGroup" [tab]="activeTab" [entity]="entity" [pageStatus]="pageStatus" [readonly]="false"></app-tab-order-item>
+    </bz-tab>
+</bz-tabset>

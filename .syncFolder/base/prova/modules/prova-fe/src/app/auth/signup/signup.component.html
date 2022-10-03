@@ -1,0 +1,49 @@
+<bz-layout>
+    <form [formGroup]="signupForm" class="fk-center fk-m-height-v login-page" >
+        <bz-card style="width:30%">
+            <!-- header -->
+            <bz-card-header>
+                <span  class="fk-center login-header"> Registrati </span>
+            </bz-card-header>
+            
+            <!-- Nome -->
+            <bz-input  label="Nome:" status="primary" formControlName="name" class="fk-block login-input" >
+                <bz-error>Il nome  è obbligatorio</bz-error>
+            </bz-input>
+
+            <!-- Cognome -->
+            <bz-input label="Cognome:" status="primary"  formControlName="surname" class="fk-block login-input" >
+               <bz-error>Il cognome è obbligatorio</bz-error>
+            </bz-input>
+
+           <!--  Data di nascita -->
+            <bz-date-picker  label="Data di nascita:" status="primary"  controlName="birdthDate" class="fk-block login-input" 
+                            [isPlaceholder]="false" [yearsBackForward]="96">
+               <bz-error>La data di nascita è obbligatoria </bz-error>
+            </bz-date-picker>
+            
+            <!-- Nome utente -->
+            <bz-input  label="Nome utente:" status="primary" formControlName="username" class="fk-block login-input" >
+                <bz-error>Il nome utente è obbligatorio</bz-error>
+            </bz-input>
+
+            <!-- Password -->
+            <bz-input  label="Password:" status="primary" type="password" formControlName="password" class="fk-block login-input" >
+               <bz-error>La password è obbligatoria </bz-error>
+            </bz-input>
+
+            <!-- Genere -->
+            <label>Genere: </label>
+            <bz-group-radio status="primary">
+                <bz-radio formControlName="gender" value="M"> M </bz-radio>
+                <bz-radio formControlName="gender" value="F"> F </bz-radio>
+                <bz-error>Selezionare il genere</bz-error>
+            </bz-group-radio>
+
+            <!-- footer -->
+            <bz-card-footer>
+                <button type="submit" bzButton status="primary" (click)="signup()" class="login-button">Submit</button>
+            </bz-card-footer>
+        </bz-card>
+    </form>
+</bz-layout>

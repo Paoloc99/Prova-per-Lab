@@ -1,0 +1,54 @@
+<bz-card class="fk-p-mt-50" isCollapsable>
+    <!-- card header -->
+    <bz-card-header>
+        {{ 'header.search' | translate }}
+    </bz-card-header>
+
+    <bz-card-content>
+        <form [formGroup]="searchOrderItemForm" (keyup.enter)="submitForm()">
+            <!-- Amount -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.OrderItem.amount' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="amountFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.OrderItem.amount' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="amountTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <bz-dropdown
+                label="{{ 'detail.OrderItem.theOrdine' | translate }}:"
+                [options]="ordineList"
+                optionLabel="objectTitle"
+                optionValue="objectKey"
+                formControlName="theOrdineObjectKey"
+            >
+                <bz-error></bz-error>
+            </bz-dropdown>
+
+            <bz-dropdown
+                label="{{ 'detail.OrderItem.theProduct' | translate }}:"
+                [options]="productList"
+                optionLabel="objectTitle"
+                optionValue="objectKey"
+                formControlName="theProductObjectKey"
+            >
+                <bz-error></bz-error>
+            </bz-dropdown>
+        </form>
+    </bz-card-content>
+</bz-card>

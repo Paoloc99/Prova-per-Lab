@@ -1,0 +1,70 @@
+<bz-card class="fk-p-mt-50" isCollapsable>
+    <!-- card header -->
+    <bz-card-header>
+        {{ 'header.search' | translate }}
+    </bz-card-header>
+
+    <bz-card-content>
+        <form [formGroup]="searchUtenteForm" (keyup.enter)="submitForm()">
+            <!-- Utente Id -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Utente.utenteId' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="utenteIdFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Utente.utenteId' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="utenteIdTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Name -->
+            <bz-input label="{{ 'detail.Utente.name' | translate }}:" formControlName="name"></bz-input>
+
+            <!-- Surname -->
+            <bz-input label="{{ 'detail.Utente.surname' | translate }}:" formControlName="surname"></bz-input>
+
+            <!-- Email -->
+            <bz-input label="{{ 'detail.Utente.email' | translate }}:" formControlName="email"></bz-input>
+
+            <!-- Oauth Id -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Utente.oauthId' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="oauthIdFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Utente.oauthId' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="oauthIdTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Is Admin -->
+            <bz-switch3 label="{{ 'detail.Utente.isAdmin' | translate }}:" ariaId="Is Admin" formControlName="isAdmin" bzTooltip=""></bz-switch3>
+        </form>
+    </bz-card-content>
+</bz-card>

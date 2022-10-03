@@ -1,0 +1,21 @@
+{
+    "detail": {
+        "Product": {
+            "label": "Product",
+            "labels": "Product",
+            "tooltip": "Product",
+            "productId": "Product Id",
+            "tooltip.productId": "Product Id",
+            "productName": "Product Name",
+            "tooltip.productName": "Product Name",
+            "cost": "Cost",
+            "tooltip.cost": "Cost",
+            "disponibility": "Disponibility",
+            "tooltip.disponibility": "Disponibility",
+            "description": "Description",
+            "tooltip.description": "Description",
+            "image": "Image",
+            "tooltip.image": "Image"
+        }
+    }
+}

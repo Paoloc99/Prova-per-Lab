@@ -1,0 +1,54 @@
+<bz-card [bzSpinner]="spinner">
+    <!-- card header -->
+    <bz-card-header class="fk-main-header">
+        {{ 'header.list' | translate: { name: 'detail.Ordine.labels' | translate } }}
+    </bz-card-header>
+
+    <bz-card-content>
+        {{ 'Ordine' | tableInfo: totalElements:page:pageSize }}
+        <!-- Tabella tipo ordine -->
+        <bz-table
+            [sources]="ordineList"
+            cssClass="fk-table-stripped fk-table-bordered fk-table-readonly"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginateTable($event, ordineCriteria)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- Id Ordine -->
+            <th bzHeaderColumn bzSortColumn="ordineId" scope="col" align="right">{{ 'detail.Ordine.ordineId' | translate }}</th>
+            <td *bzColumnDef="let ordine" align="right">
+                <div class="fk-pointer" (click)="navigateToView(ordine.objectKey)">{{ ordine.ordineId }}</div>
+            </td>
+
+            <!-- Date -->
+            <th bzHeaderColumn bzSortColumn="date" scope="col">{{ 'detail.Ordine.date' | translate }}</th>
+            <td *bzColumnDef="let ordine">{{ ordine.date | date: 'dd/MM/yyyy' }}</td>
+            <!-- Total Cost -->
+            <th bzHeaderColumn bzSortColumn="totalCost" scope="col" align="right">{{ 'detail.Ordine.totalCost' | translate }}</th>
+            <td *bzColumnDef="let ordine" align="right">{{ ordine.totalCost }}</td>
+            <!-- Address -->
+            <th bzHeaderColumn bzSortColumn="address" scope="col">{{ 'detail.Ordine.address' | translate }}</th>
+            <td *bzColumnDef="let ordine">{{ ordine.address }}</td>
+
+            <!-- Utente -->
+            <th bzHeaderColumn bzSortColumn="theUtente.name" scope="col">{{ 'detail.Ordine.theUtente' | translate }}</th>
+            <td *bzColumnDef="let ordine">{{ ordine.theUtenteObjectTitle }}</td>
+
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.Ordine.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>
+
+<!-- Search with criteria -->
+<app-search-ordine (submit)="searchWithCriteria()"></app-search-ordine>
+
+<!-- Buttons -->
+<bz-buttons-panel fixed>
+    <button bzButton status="primary" class="button" (click)="searchWithCriteria()">{{ 'buttons.search' | translate }}</button>
+    <button bzButton status="primary" class="button" *ngIf="Privileges?.ORDINE_CREATE | hasPermission: privileges" routerLink="/pages/ms-store/ordine/detail-ordine/new">
+        {{ 'buttons.new' | translate: { '0': ' ' } }}
+    </button>
+</bz-buttons-panel>

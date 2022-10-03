@@ -1,0 +1,85 @@
+<bz-card [bzSpinner]="spinner" *ngIf="!(pageStatus | hasPageStatus: ['new', 'edit']) || readonly">
+    <bz-card-content>
+        {{ 'Order Item' | tableInfo: totalElements:page:pageSize }}
+        <bz-table
+            [sources]="orderItemList"
+            cssClass="fk-table-stripped fk-table-bordered fk-table-readonly"
+            [pageSize]="pageSize"
+            [nVisiblePages]="3"
+            [totalPages]="totalElements"
+            (pageObject)="paginate($event)"
+            [page]="page"
+            paginatedBe
+        >
+            <!-- Product -->
+            <th bzHeaderColumn bzSortColumn="theProduct" scope="col">{{ 'detail.OrderItem.theProduct' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element">
+                <div class="fk-pointer" (click)="navigateToView(element.objectKey)">{{ element.theProductObjectTitle }}</div>
+            </td>
+
+            <!-- Amount -->
+            <th bzHeaderColumn bzSortColumn="amount" scope="col" align="right">{{ 'detail.OrderItem.amount' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" align="right">{{ element.amount }}</td>
+
+            <ng-container bzTableNoValue> {{ 'table.noRecordFound' | translate: { '0': 'detail.OrderItem.label' | translate } }} </ng-container>
+        </bz-table>
+    </bz-card-content>
+</bz-card>
+
+<!-- Add Order Item -->
+<bz-card *ngIf="(pageStatus | hasPageStatus: ['new', 'edit']) && !readonly">
+    <bz-card-content>
+        <bz-table
+            [bzSmartTable]="orderItemList"
+            [bzFormGroup]="smartFormGroup"
+            [bzDisabledControls]="['theUtenteObjectKey']"
+            [bzForm]="form"
+            (smartArray)="getSmartArray($event)"
+            withIndex
+            cssClass="fk-table-stripped fk-table-bordered"
+            paginated
+        >
+            <!-- Product -->
+            <th bzHeaderColumn class="prodotto-column-width" scope="col">{{ 'detail.OrderItem.theProduct' | translate }}*</th>
+            <td class="smart-table-td" *bzColumnDef="let element" [formGroup]="element.value">
+                <bz-dropdown
+                    [options]="productList"
+                    optionLabel="objectTitle"
+                    optionValue="objectKey"
+                    formControlName="theProductObjectKey"
+                    [disableAttr]="(pageStatus | hasPageStatus: 'edit') && element.value.entityState == 'N'"
+                    validKey="Ordine"
+                >
+                    <bz-error *ngFor="let err of errorsFor(element.value, 'theProductObjectKey')">
+                        {{ err.key | translate: getParams('detail.OrderItem.theProduct' | translate, err.params) }}
+                    </bz-error>
+                </bz-dropdown>
+            </td>
+
+            <!-- Amount -->
+            <th bzHeaderColumn scope="col">{{ 'detail.OrderItem.amount' | translate }}</th>
+            <td class="smart-table-td" *bzColumnDef="let element" [formGroup]="element?.value">
+                <bz-input formControlName="amount" type="number" validKey="Ordine">
+                    <bz-error *ngFor="let err of errorsFor(element.value, 'amount')">
+                        {{ err.key | translate: getParams('detail.OrderItem.amount' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+            </td>
+
+            <!-- Remove Order Item -->
+            <th bzHeaderColumn scope="col"></th>
+            <td class="smart-table-td" *bzColumnDef="let element">
+                <button bzButton [bzRemoveRow]="element" status="danger">
+                    {{ 'buttons.delete' | translate }}
+                </button>
+                <button bzButton [bzRestoreRow]="element" status="primary">
+                    {{ 'buttons.restore' | translate }}
+                </button>
+            </td>
+
+            <ng-container> {{ 'table.noRecordFound' | translate: { '0': 'buttons.element' | translate } }} </ng-container>
+
+            <button bzButton bzAddRow>{{ 'buttons.new' | translate: { '0': 'buttons.element' | translate } }}</button>
+        </bz-table>
+    </bz-card-content>
+</bz-card>

@@ -1,0 +1,30 @@
+<bz-card >
+    <!-- card header -->
+    <bz-card-header>
+        Elenco degli acquisti più recenti
+    </bz-card-header>
+    
+	<bz-card-content>
+	
+	    <!-- Tabella prodotto -->
+	    <bz-table [sources]="salesList" cssClass="fk-table-stripped fk-table-bordered" [pageSize]="8" [nVisiblePages]="3" paginated>
+	
+	        <!-- Product -->
+	        <th bzHeaderColumn bzSortColumn="product" scope="col"> Prodotto</th>
+	        <td *bzColumnDef="let element"> {{element.product}} </td>
+	
+	         <!-- Price -->
+	        <th bzHeaderColumn bzSortColumn="price" scope="col"> Prezzo </th>
+	        <td *bzColumnDef="let element"> {{element.price}}</td>
+	
+	        <!-- Date -->
+	        <th bzHeaderColumn bzSortColumn="date" scope="col"> Date </th>
+	        <td *bzColumnDef="let element"> {{element.date}}</td>
+	
+	        <ng-container bzTableNoValue> Non sono presenti acquisti </ng-container>
+	
+	    </bz-table>
+	    
+	</bz-card-content>
+
+</bz-card>

@@ -1,0 +1,186 @@
+<form [formGroup]="utenteForm">
+    <bz-card>
+        <bz-card-header class="fk-main-header">
+            {{ 'header.detail' | translate: { name: 'detail.Utente.label' | translate } }}
+            <em bzTooltip="{{ 'detail.Utente.tooltip' | translate }}" class="fa fa-question-circle"></em>
+        </bz-card-header>
+
+        <bz-card-content>
+            <ng-container *ngIf="pageStatus | hasPageStatus: ['new', 'edit']">
+                <!-- Utente Id-->
+                <bz-input
+                    label="{{ 'detail.Utente.utenteId' | translate }}*:"
+                    formControlName="utenteId"
+                    bzTooltip="{{ 'detail.Utente.tooltip.utenteId' | translate }}"
+                    type="number"
+                    [disableAttr]="pageStatus | hasPageStatus: 'edit'"
+                >
+                    <bz-error *ngFor="let err of errorsFor(utenteForm, 'utenteId')">
+                        {{ err.key | translate: getParams('detail.Utente.utenteId' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Name-->
+
+                <bz-input label="{{ 'detail.Utente.name' | translate }}:" formControlName="name" bzTooltip="{{ 'detail.Utente.tooltip.name' | translate }}" type="string">
+                    <bz-error *ngFor="let err of errorsFor(utenteForm, 'name')">
+                        {{ err.key | translate: getParams('detail.Utente.name' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Surname-->
+
+                <bz-input label="{{ 'detail.Utente.surname' | translate }}:" formControlName="surname" bzTooltip="{{ 'detail.Utente.tooltip.surname' | translate }}" type="string">
+                    <bz-error *ngFor="let err of errorsFor(utenteForm, 'surname')">
+                        {{ err.key | translate: getParams('detail.Utente.surname' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Email-->
+
+                <bz-input label="{{ 'detail.Utente.email' | translate }}:" formControlName="email" bzTooltip="{{ 'detail.Utente.tooltip.email' | translate }}" type="string">
+                    <bz-error *ngFor="let err of errorsFor(utenteForm, 'email')">
+                        {{ err.key | translate: getParams('detail.Utente.email' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Oauth Id-->
+                <bz-input label="{{ 'detail.Utente.oauthId' | translate }}:" formControlName="oauthId" bzTooltip="{{ 'detail.Utente.tooltip.oauthId' | translate }}" type="number">
+                    <bz-error *ngFor="let err of errorsFor(utenteForm, 'oauthId')">
+                        {{ err.key | translate: getParams('detail.Utente.oauthId' | translate, err.params) }}
+                    </bz-error>
+                </bz-input>
+
+                <!-- Is Admin-->
+
+                <bz-switch3
+                    label="{{ 'detail.Utente.isAdmin' | translate }}:"
+                    ariaId="Is Admin"
+                    formControlName="isAdmin"
+                    bzTooltip="{{ 'detail.Utente.tooltip.isAdmin' | translate }}"
+                    type="boolean"
+                >
+                    <bz-error *ngFor="let err of errorsFor(utenteForm, 'isAdmin')">
+                        {{ err.key | translate: getParams('detail.Utente.isAdmin' | translate, err.params) }}
+                    </bz-error></bz-switch3
+                >
+            </ng-container>
+
+            <div *ngIf="pageStatus | hasPageStatus: 'view'">
+                <!-- Utente Id -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Utente.utenteId' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ utente?.utenteId }}</strong>
+                    </div>
+                </div>
+
+                <!-- Name -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Utente.name' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ utente?.name }}</strong>
+                    </div>
+                </div>
+
+                <!-- Surname -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Utente.surname' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ utente?.surname }}</strong>
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Utente.email' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ utente?.email }}</strong>
+                    </div>
+                </div>
+
+                <!-- Oauth Id -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Utente.oauthId' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ utente?.oauthId }}</strong>
+                    </div>
+                </div>
+
+                <!-- Is Admin -->
+                <div class="fk-row fk-p-mb-15">
+                    <div class="fk-col-4 fk-p">
+                        <label> {{ 'detail.Utente.isAdmin' | translate }}: &nbsp;</label>
+                    </div>
+                    <div class="fk-col fk-p">
+                        <strong>{{ utente?.isAdmin | siNo }}</strong>
+                    </div>
+                </div>
+            </div>
+
+            <!--Tabs utente -->
+            <app-tabs-utente [formGroup]="utenteForm" [entity]="utente" [pageStatus]="tabPageStatus"></app-tabs-utente>
+        </bz-card-content>
+    </bz-card>
+
+    <!-- Buttons -->
+    <bz-buttons-panel fixed>
+        <button bzButton status="primary" type="button" (click)="buttonsService.goBack()">{{ 'buttons.goBack' | translate }}</button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'new') && (Privileges?.UTENTE_CREATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="insertUtente()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.UTENTE_FIND_BY_ID | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="editUtente()"
+            type="button"
+        >
+            {{ 'buttons.edit' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: 'edit') && (Privileges?.UTENTE_UPDATE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="updateUtente()"
+        >
+            {{ 'buttons.save' | translate }}
+        </button>
+        <button
+            *ngIf="(pageStatus | hasPageStatus: ['view']) && (Privileges?.UTENTE_DELETE | hasPermission: privileges)"
+            bzButton
+            status="primary"
+            class="button"
+            (click)="confirmDeleteUtente()"
+        >
+            {{ 'buttons.delete' | translate }}
+        </button>
+        <button
+            bzButton
+            status="primary"
+            class="button"
+            *ngIf="(pageStatus | hasPageStatus: 'view') && (Privileges?.UTENTE_CREATE | hasPermission: privileges)"
+            routerLink="/pages/ms-store/utente/detail-utente/new"
+        >
+            {{ 'buttons.new' | translate: { '0': ' ' } }}
+        </button>
+    </bz-buttons-panel>
+</form>

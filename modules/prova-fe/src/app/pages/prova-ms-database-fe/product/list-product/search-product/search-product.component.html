@@ -1,0 +1,91 @@
+<bz-card class="fk-p-mt-50" isCollapsable>
+    <!-- card header -->
+    <bz-card-header>
+        {{ 'header.search' | translate }}
+    </bz-card-header>
+
+    <bz-card-content>
+        <form [formGroup]="searchProductForm" (keyup.enter)="submitForm()">
+            <!-- Product Id -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.productId' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="productIdFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.productId' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="productIdTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Product Name -->
+            <bz-input label="{{ 'detail.Product.productName' | translate }}:" formControlName="productName"></bz-input>
+
+            <!-- Cost -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.cost' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="costFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.cost' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="costTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Disponibility -->
+            <div class="fk-row">
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.disponibility' | translate }}:"
+                        placeholder="{{ 'search.from' | translate }}"
+                        formControlName="disponibilityFrom"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+                <div class="fk-col-6 fk-p-pr-0">
+                    <bz-input
+                        label="{{ 'detail.Product.disponibility' | translate }}:"
+                        placeholder="{{ 'search.to' | translate }}"
+                        formControlName="disponibilityTo"
+                        labelWidth="8"
+                        controlWidth="4"
+                        type="number"
+                    ></bz-input>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <bz-input label="{{ 'detail.Product.description' | translate }}:" formControlName="description"></bz-input>
+
+            <!-- Image -->
+            <bz-input label="{{ 'detail.Product.image' | translate }}:" formControlName="image"></bz-input>
+        </form>
+    </bz-card-content>
+</bz-card>
