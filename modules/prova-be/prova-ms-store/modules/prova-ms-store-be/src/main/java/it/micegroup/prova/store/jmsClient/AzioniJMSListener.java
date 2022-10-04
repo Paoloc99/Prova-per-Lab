@@ -1,4 +1,4 @@
-package it.yourstore.store.jmsClient;
+package it.micegroup.prova.store.jmsClient;
 
 import java.util.Observable;
 import java.util.Properties;
@@ -17,11 +17,10 @@ import javax.jms.TopicSubscriber;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-import org.springframework.jms.annotation.JmsListener;
 import org.slf4j.LoggerFactory;
 
 
-public class AzioniJMSListener extends Observable implements MessageListener {
+public class AzioniJMSListener implements MessageListener {
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(AzioniJMSListener.class);
 	
     private TopicConnection topicConnection;
@@ -99,7 +98,5 @@ jndiContext = new InitialContext(props);
 			err.printStackTrace();
 		}
 	}
-	@JmsListener(destination = "")
-	public void zizze(Message mex) {}
 
 }

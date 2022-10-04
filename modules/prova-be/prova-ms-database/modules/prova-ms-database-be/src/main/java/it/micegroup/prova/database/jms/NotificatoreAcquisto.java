@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package it.uniroma1.jmsstockmarketservant;
+package it.micegroup.prova.database.jms;
 
 import javax.jms.*;
 import javax.naming.*;
