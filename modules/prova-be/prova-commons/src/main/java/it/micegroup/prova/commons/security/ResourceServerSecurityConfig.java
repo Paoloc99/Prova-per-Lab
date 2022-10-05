@@ -36,8 +36,8 @@ public class ResourceServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) {
-		enabledSecurity(http); // ABILITA LA SICUREZZA
-		// disabledSecurity(http);
+//		enabledSecurity(http); // ABILITA LA SICUREZZA
+		disabledSecurity(http);
 	}
 
 	private void enabledSecurity(HttpSecurity http) {
