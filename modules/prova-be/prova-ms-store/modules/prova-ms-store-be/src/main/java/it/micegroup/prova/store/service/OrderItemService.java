@@ -11,6 +11,7 @@ import it.micegroup.prova.store.domain.Ordine;
 import it.micegroup.prova.store.domain.Product;
 import org.springframework.data.jpa.domain.Specification;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface OrderItemService extends BaseEntityService<OrderItem, OrderItemKey> {
@@ -45,5 +46,7 @@ public interface OrderItemService extends BaseEntityService<OrderItem, OrderItem
 	Optional<OrderItem> delete(String objectKey);
 
 	Page<OrderItem> search(Specification<OrderItem> specification, Pageable pageable);
+
+	List<OrderItem> findTheOrderItemListByTheOrdine(Ordine ordine);
 
 }

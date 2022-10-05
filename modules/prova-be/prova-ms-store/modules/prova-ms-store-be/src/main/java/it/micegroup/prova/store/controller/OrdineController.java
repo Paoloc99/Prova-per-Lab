@@ -2,6 +2,8 @@ package it.micegroup.prova.store.controller;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -33,12 +35,15 @@ import io.swagger.v3.oas.annotations.Operation;
 import it.micegroup.voila2runtime.exception.BusinessException;
 import it.micegroup.voila2runtime.response.Message.MessageLevelType;
 import it.micegroup.voila2runtime.response.Messages;
+import it.micegroup.prova.store.domain.OrderItem;
 import it.micegroup.prova.store.domain.Ordine;
+import it.micegroup.prova.store.domain.Product;
 import it.micegroup.prova.store.dto.EditOrdineDto;
 import it.micegroup.prova.store.dto.ViewOrdineDto;
 import it.micegroup.prova.store.dto.ViewOrderItemDto;
 import it.micegroup.prova.store.exception.ResourceAlreadyFoundException;
 import it.micegroup.prova.store.exception.ResourceNotFoundException;
+import it.micegroup.prova.store.jms.ToDatabaseJMSProducer;
 import it.micegroup.prova.store.mapper.OrdineMappers;
 import it.micegroup.prova.store.mapper.OrderItemMappers;
 import it.micegroup.prova.store.service.OrdineService;
@@ -61,6 +66,8 @@ public class OrdineController extends BaseController<Ordine> {
 	private final OrderItemService orderItemService;
 	// CHILD MAPPER
 	private final OrderItemMappers orderItemMappers;
+
+	private final ToDatabaseJMSProducer producer;
 
 	// API
 	/**
@@ -212,6 +219,33 @@ public class OrdineController extends BaseController<Ordine> {
 		Utente key = new Utente(utenteObjectKey);
 		Page<ViewOrdineDto> collModel = ordineMappers.map(ordineService.findByTheUtente(key, pageable));
 		return toResponseEntityPaged(collModel, null);
+	}
+
+	/**
+	 * {@code POST  /ordine} : Create a new Ordine.
+	 *
+	 * @param requestBody the Ordine to create.
+	 * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+	 *         body the new Ordine, or with status {@code 400 (Bad Request)} if the
+	 *         requestBody is invalid.
+	 * @throws URISyntaxException if the Location URI syntax is incorrect.
+	 */
+	@PostMapping("/purchase/{objectKey:.+}")
+	@Transactional
+	@Operation(summary = "Create a new Ordine")
+	@PreAuthorize("hasRole(@permissionHolder.ORDINE_CREATE.toString())")
+	public ResponseEntity<ViewOrdineDto> purchase(@PathVariable String objectKey) {
+		Ordine entity = ordineService.findByObjectKey(objectKey).get();
+		entity.setDate(LocalDate.now());
+		ordineService.update(entity);
+		List<OrderItem> orderItems = orderItemService.findTheOrderItemListByTheOrdine(entity);
+		for(OrderItem oi : orderItems) {
+			producer.sendPurchasedProductNotification(oi.getProductId(), oi.getAmount());
+		}
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(entity.getOrdineId()).toUri();
+		ViewOrdineDto dto = ordineMappers.map(entity);
+		return ResponseEntity.created(location).body(dto);
 	}
 
 	private ResponseEntity<ViewOrdineDto> toResponseEntity(Optional<Ordine> maybeResponse, HttpHeaders header,

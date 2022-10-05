@@ -174,5 +174,12 @@ public class OrderItemServiceImpl extends BaseServiceImpl implements OrderItemSe
 		Page<Product> result = new PageImpl<Product>(content, pageable, orderItemPage.getTotalElements());
 		return result;
 	}
+	
+	@Override
+	public List<OrderItem> findTheOrderItemListByTheOrdine(Ordine ordine) {
+		Page<OrderItem> orderItemPage = orderItemRepository.findByTheOrdine(ordine, null);
+		List<OrderItem> content = orderItemPage.getContent().stream().collect(Collectors.toList());
+		return content;
+	}
 
 }
