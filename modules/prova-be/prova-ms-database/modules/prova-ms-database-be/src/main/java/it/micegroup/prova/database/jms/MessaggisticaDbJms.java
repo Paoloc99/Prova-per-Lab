@@ -77,7 +77,7 @@ public class MessaggisticaDbJms {
 			Integer idProdotto = product.getProductId();
 			String comando = "NewProdotto";
 			try {
-				message.setStringProperty("Command", comando);
+				message.setStringProperty("State", comando);
 				message.setIntProperty("IdProdotto", idProdotto);
 				LOG.info("Invio idProdotto: " + idProdotto);
 

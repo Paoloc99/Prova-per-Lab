@@ -1,4 +1,4 @@
-package it.micegroup.prova.store.jms;
+package it.micegroup.prova.database.jms;
 
 import java.util.Observable;
 import java.util.Properties;
@@ -10,6 +10,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
+import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.jms.TopicConnection;
 import javax.jms.TopicSession;
@@ -19,11 +20,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import org.slf4j.LoggerFactory;
 
-import it.micegroup.prova.store.domain.Product;
-import it.micegroup.prova.store.service.ProductService;
+import it.micegroup.prova.database.domain.Product;
+import it.micegroup.prova.database.service.ProductService;
 
-public class FromDatabaseJMSListener implements MessageListener {
-	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(FromDatabaseJMSListener.class);
+public class FromStoreJMSListener implements MessageListener {
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(FromStoreJMSListener.class);
 	
 	public ProductService productService;
 	
@@ -32,7 +33,7 @@ public class FromDatabaseJMSListener implements MessageListener {
 	private Destination destination = null;
 	private MessageProducer producer = null;
 
-	public FromDatabaseJMSListener() {
+	public FromStoreJMSListener() {
 
 		Context jndiContext = null;
 		ConnectionFactory topicConnectionFactory = null;
@@ -87,17 +88,21 @@ public class FromDatabaseJMSListener implements MessageListener {
 		try {
 			String state = mex.getStringProperty("State");
 			switch (state) {
-			case "NewProdotto":
+			case "InfoProdotto":
+				TextMessage messageProduct = null;
+				messageProduct = this.topicSession.createTextMessage();
 				Integer productId = mex.getIntProperty("ProductId");
-				LOG.info("New product added: " + productId);
+				LOG.info("Getting info product with ID: " + productId);
 				Product product = new Product();
 				product.setProductId(productId);
-				productService.insert(product);
+				product.setProductName("Camicia di Lino");
+				messageProduct.setObjectProperty("Product", product);
+				this.producer.send(messageProduct);
 				break;
-			case "ProductInfoResponse":
+			case "ProdottoAcquistato":
 				Integer prodId = mex.getIntProperty("ProductId");
 				Integer disponibility = mex.getIntProperty("Dispopnibility");
-				LOG.info("Got response for product " + prodId + "info request. Got disponibility: " + disponibility );
+				LOG.info("Got Message ProdottoAcquistato with: ( disponibility: " +disponibility+ ", prodId: "+ prodId+" )" );
 				break;
 			default:
 				break;
