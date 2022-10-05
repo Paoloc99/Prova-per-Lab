@@ -4,35 +4,28 @@
  */
 package it.micegroup.prova.database.jms;
 
-import javax.jms.*;
-import javax.naming.*;
+import java.util.Properties;
 
-import java.util.*;
-import java.util.logging.Logger;
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.Session;
+import javax.jms.TextMessage;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 import org.slf4j.LoggerFactory;
 
-public class NotificatoreAcquisto {
+import it.micegroup.prova.database.domain.Product;
 
-	final String titoli[] = { "Telecom", "Finmeccanica", "Banca_Intesa", "Oracle", "Parmalat", "Mondadori", "Vodafone",
-			"Barilla" };
+public class MessaggisticaDbJms {
 
-	private String scegliTitolo() {
-		int whichMsg;
-		Random randomGen = new Random();
+	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(MessaggisticaDbJms.class);
 
-		whichMsg = randomGen.nextInt(this.titoli.length);
-		return this.titoli[whichMsg];
-	}
-
-	private float valore() {
-		Random randomGen = new Random();
-		float val = randomGen.nextFloat() * this.titoli.length * 10;
-		return val;
-	}
-
-	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(NotificatoreAcquisto.class);
-
-	public void start() throws NamingException, JMSException, InterruptedException {
+	public void sendInsert(Product product) throws NamingException, JMSException, InterruptedException {
 
 		Context jndiContext = null;
 		ConnectionFactory connectionFactory = null;
@@ -40,14 +33,12 @@ public class NotificatoreAcquisto {
 		Session session = null;
 		Destination destination = null;
 		MessageProducer producer = null;
-		String destinationName = "dynamicTopics/Quotazioni";
+		String destinationName = "StockTOStore";
 
 		/*
 		 * Create a JNDI API InitialContext object
 		 */
-
 		try {
-
 			Properties props = new Properties();
 
 			props.setProperty(Context.INITIAL_CONTEXT_FACTORY,
@@ -82,25 +73,19 @@ public class NotificatoreAcquisto {
 			producer = session.createProducer(destination);
 
 			TextMessage message = null;
-			String messageType = null;
-
 			message = session.createTextMessage();
+			Integer idProdotto = product.getProductId();
+			String comando = "NewProdotto";
+			try {
+				message.setStringProperty("Command", comando);
+				message.setIntProperty("IdProdotto", idProdotto);
+				LOG.info("Invio idProdotto: " + idProdotto);
 
-			float quotazione;
-			int i = 0;
-			while (true) {
-				Thread.sleep(5000);
-				Integer quantita = 50;
-				try {
-					
-				message.setIntProperty("Quantita",quantita);
-					LOG.info("Invio quantita");
-
-					producer.send(message);
-				} catch (Exception err) {
-					err.printStackTrace();
-				}
+				producer.send(message);
+			} catch (Exception err) {
+				err.printStackTrace();
 			}
+
 		}
 
 		catch (JMSException e) {
@@ -114,5 +99,11 @@ public class NotificatoreAcquisto {
 			}
 		}
 	}
+
+//	private Integer rmID() {
+//		Random randomGen = new Random();
+//		Integer val = randomGen.nextInt();
+//		return val;
+//	}
 
 }

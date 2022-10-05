@@ -1,4 +1,4 @@
-package it.micegroup.prova.store.jmsClient;
+package it.micegroup.prova.store.jms;
 
 import java.util.Observable;
 import java.util.Properties;

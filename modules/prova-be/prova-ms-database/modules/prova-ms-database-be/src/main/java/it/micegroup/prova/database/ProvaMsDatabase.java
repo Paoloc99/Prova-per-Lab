@@ -7,14 +7,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
-import it.micegroup.prova.database.jms.NotificatoreAcquisto;
+import it.micegroup.prova.database.jms.MessaggisticaDbJms;
 
 @SpringBootApplication
 @ComponentScan({ "it.micegroup.prova", "it.micegroup.voila2runtime" })
 public class ProvaMsDatabase {
 	public static void main(String[] args) throws NamingException, JMSException, InterruptedException {
 		SpringApplication.run(ProvaMsDatabase.class, args);
-		NotificatoreAcquisto n = new NotificatoreAcquisto();
-		n.start();
 	}
 }

@@ -4,6 +4,8 @@ import java.util.List;
 
 import java.util.Optional;
 
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
@@ -16,7 +18,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import it.micegroup.prova.database.domain.Product;
-
+import it.micegroup.prova.database.dto.ViewProductDto;
+import it.micegroup.prova.database.jms.MessaggisticaDbJms;
 import it.micegroup.prova.database.repository.ProductRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -125,6 +128,15 @@ public class ProductServiceImpl extends BaseServiceImpl implements ProductServic
 	public Product bulkUpdate(Product product) {
 		Product update = this.update(product);
 		return update;
+	}
+	
+	public void sendInsertJms(Product product){
+		MessaggisticaDbJms messJms = new MessaggisticaDbJms();
+		try {
+			messJms.sendInsert(product);
+		} catch (NamingException | JMSException | InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

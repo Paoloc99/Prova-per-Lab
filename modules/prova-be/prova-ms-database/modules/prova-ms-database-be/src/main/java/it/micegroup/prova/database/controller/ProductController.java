@@ -4,6 +4,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Optional;
 
+import javax.jms.JMSException;
+import javax.naming.NamingException;
 import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +41,7 @@ import it.micegroup.prova.database.dto.ViewProductDto;
 
 import it.micegroup.prova.database.exception.ResourceAlreadyFoundException;
 import it.micegroup.prova.database.exception.ResourceNotFoundException;
+import it.micegroup.prova.database.jms.MessaggisticaDbJms;
 import it.micegroup.prova.database.mapper.ProductMappers;
 import it.micegroup.prova.database.service.ProductService;
 
@@ -90,6 +93,7 @@ public class ProductController extends BaseController<Product> {
 	@PreAuthorize("hasRole(@permissionHolder.PRODUCT_CREATE.toString())")
 	public ResponseEntity<ViewProductDto> insert(@RequestBody @Valid EditProductDto requestBody) {
 		Product entity = productMappers.map(requestBody);
+		LOGGER.info("Ricevuto IdProdotto: " + entity.getProductId());
 		if (productService.findByObjectKey(entity.getObjectKey()).isPresent()) {
 			throw new ResourceAlreadyFoundException(Product.class.getSimpleName(), entity.getObjectKey());
 		} else {
@@ -97,6 +101,8 @@ public class ProductController extends BaseController<Product> {
 			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 					.buildAndExpand(entity.getProductId()).toUri();
 			ViewProductDto dto = productMappers.map(entity);
+			//invia un messaggio allo store utilizzando il canale "StockTOStore"
+			productService.sendInsertJms(entity);
 			return ResponseEntity.created(location).body(dto);
 		}
 	}
