@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -66,7 +67,7 @@ public class OrdineController extends BaseController<Ordine> {
 	private final OrderItemService orderItemService;
 	// CHILD MAPPER
 	private final OrderItemMappers orderItemMappers;
-
+	@Autowired
 	private final ToDatabaseJMSProducer producer;
 
 	// API

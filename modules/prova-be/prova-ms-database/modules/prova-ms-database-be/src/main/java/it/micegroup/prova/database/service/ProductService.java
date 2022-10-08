@@ -6,9 +6,11 @@ import it.micegroup.prova.database.dto.ViewProductDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public interface ProductService extends BaseEntityService<Product, Integer> {
 
 	// PARENT-SPECIFIC SERVICES

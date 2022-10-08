@@ -19,8 +19,8 @@ public class ProvaMsStore {
 		SpringApplication.run(ProvaMsStore.class, args);
 		AzioniJMSListener aJMSL = new AzioniJMSListener();
 		aJMSL.start();
-		FromDatabaseJMSListener listenerFromDatabase = new FromDatabaseJMSListener();
-		listenerFromDatabase.start();
+//		FromDatabaseJMSListener listenerFromDatabase = new FromDatabaseJMSListener();
+//		listenerFromDatabase.start();
 		ToDatabaseJMSProducer producerToDatabase = new ToDatabaseJMSProducer();
 		producerToDatabase.start();
 		

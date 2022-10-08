@@ -9,50 +9,54 @@ import javax.naming.*;
 
 import java.util.*;
 import java.util.logging.Logger;
-import org.slf4j.LoggerFactory;
 
-public class ToDatabaseJMSProducer {
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ToDatabaseJMSProducer implements MessageListener{
 
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(ToDatabaseJMSProducer.class);
 
 	Context jndiContext = null;
-	ConnectionFactory connectionFactory = null;
+	ActiveMQConnectionFactory connectionFactory = null;
 	Connection connection = null;
 	Session session = null;
-	Destination destination = null;
+	Destination queue = null;
+	Destination productInfoDest = null;
 	MessageProducer producer = null;
-	String destinationName = "dynamicTopics/StoreToDatabase";
+	String destinationName = "StoreToDatabase";
+	MessageConsumer responseConsumer = null;
 
 	public void start() throws NamingException, JMSException, InterruptedException {
-		try {
-			Properties props = new Properties();
+		connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+        connection = connectionFactory.createConnection();
+		connection.start();
+		session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+		queue = session.createQueue(destinationName);
 
-			props.setProperty(Context.INITIAL_CONTEXT_FACTORY,
-					"org.apache.activemq.jndi.ActiveMQInitialContextFactory");
-			props.setProperty(Context.PROVIDER_URL, "tcp://localhost:61616");
-			jndiContext = new InitialContext(props);
-
-			connectionFactory = (ConnectionFactory) jndiContext.lookup("ConnectionFactory");
-			destination = (Destination) jndiContext.lookup(destinationName);
-			connection = connectionFactory.createConnection();
-			session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
-			producer = session.createProducer(destination);
-			
-			sendInfoProdottoRequest(1);
-			sendPurchasedProductNotification(1,1);
-		} catch (NamingException e) {
-			LOG.info("ERROR in JNDI: " + e.toString());
-			System.exit(1);
-		}
+		producer = session.createProducer(queue);
+		producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+		
+		sendInfoProdottoRequest(1);
+//		sendPurchasedProductNotification(1,1);
 	}
 
 	public void sendInfoProdottoRequest(Integer productId) {
 		try {
-			TextMessage message = session.createTextMessage();
-
+			Destination tempDest = session.createTemporaryQueue();
+			MessageConsumer responseConsumer = session.createConsumer(tempDest);
+            responseConsumer.setMessageListener(this);
+            
+            TextMessage message = session.createTextMessage();
+			message.setJMSReplyTo(tempDest);
+			String correlationId = this.createRandomString();
+            message.setJMSCorrelationID(correlationId);
+			
 			message.setStringProperty("State", "ProductInfo");
 			message.setIntProperty("ProductId", productId);
+			
 			LOG.info("Send product info request to Database... Product id: " + productId);
 			try {
 				producer.send(message);
@@ -81,4 +85,24 @@ public class ToDatabaseJMSProducer {
 			LOG.error("Exception occurred: " + e);
 		}
 	}
+
+	@Override
+	public void onMessage(Message message) {
+		String messageText = null;
+        try {
+            if (message instanceof TextMessage) {
+                TextMessage textMessage = (TextMessage) message;
+                messageText = textMessage.getText();
+                System.out.println("messageText = " + messageText);
+            }
+        } catch (JMSException e) {
+            //Handle the exception appropriately
+        }		
+	}
+	
+	private String createRandomString() {
+        Random random = new Random(System.currentTimeMillis());
+        long randomLong = random.nextLong();
+        return Long.toHexString(randomLong);
+    }
 }

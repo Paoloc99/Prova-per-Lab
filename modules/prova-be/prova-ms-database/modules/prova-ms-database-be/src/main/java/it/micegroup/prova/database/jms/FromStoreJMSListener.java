@@ -3,10 +3,13 @@ package it.micegroup.prova.database.jms;
 import java.util.Observable;
 import java.util.Properties;
 
+import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
+import javax.jms.DeliveryMode;
 import javax.jms.Destination;
 import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.MessageConsumer;
 import javax.jms.MessageListener;
 import javax.jms.MessageProducer;
 import javax.jms.Session;
@@ -18,56 +21,32 @@ import javax.jms.TopicSubscriber;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import it.micegroup.prova.database.domain.Product;
 import it.micegroup.prova.database.service.ProductService;
 
 public class FromStoreJMSListener implements MessageListener {
 	private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(FromStoreJMSListener.class);
-	
+	@Autowired
 	public ProductService productService;
-	
-	private TopicConnection topicConnection;
+
+	private Connection connection;
 	private TopicSession topicSession = null;
-	private Destination destination = null;
+	private Session session;
+	private Destination queue = null;
 	private MessageProducer producer = null;
-
-	public FromStoreJMSListener() {
-
-		Context jndiContext = null;
-		ConnectionFactory topicConnectionFactory = null;
-
-		String destinationName = "StockTOStore";
-
-		try {
-			Properties props = new Properties();
-
-			props.setProperty(Context.INITIAL_CONTEXT_FACTORY, "org.apache.activemq.jndi.ActiveMQInitialContextFactory");
-			props.setProperty(Context.PROVIDER_URL, "tcp://localhost:61616");
-			jndiContext = new InitialContext(props);
-
-			topicConnectionFactory = (ConnectionFactory) jndiContext.lookup("ConnectionFactory");
-			destination = (Destination) jndiContext.lookup(destinationName);
-			topicConnection = (TopicConnection) topicConnectionFactory.createConnection();
-			topicSession = (TopicSession) topicConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-
-			TopicSubscriber topicSubscriber = topicSession.createSubscriber((Topic) destination);
-
-			topicSubscriber.setMessageListener(this);
-		} catch (JMSException err) {
-			err.printStackTrace();
-		} catch (NamingException err) {
-			err.printStackTrace();
-		}
-	}
+	ActiveMQConnectionFactory connectionFactory = null;
 
 	/**
 	 * Chiude la ricezione dei messaggi sulla topic quotazioni
 	 */
 	public void stop() {
 		try {
-			topicConnection.stop();
+			connection.stop();
 		} catch (JMSException err) {
 			err.printStackTrace();
 		}
@@ -78,7 +57,17 @@ public class FromStoreJMSListener implements MessageListener {
 	 */
 	public void start() {
 		try {
-			topicConnection.start();
+			connectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61616");
+			connection = connectionFactory.createConnection();
+			connection.start();
+			this.session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
+			queue = this.session.createQueue("StoreToDatabase");
+
+			this.producer = this.session.createProducer(null);
+			this.producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
+
+			MessageConsumer consumer = this.session.createConsumer(queue);
+			consumer.setMessageListener(this);
 		} catch (JMSException err) {
 			err.printStackTrace();
 		}
@@ -88,21 +77,33 @@ public class FromStoreJMSListener implements MessageListener {
 		try {
 			String state = mex.getStringProperty("State");
 			switch (state) {
-			case "InfoProdotto":
+			case "ProductInfo":
 				TextMessage messageProduct = null;
-				messageProduct = this.topicSession.createTextMessage();
+				messageProduct = this.session.createTextMessage();
 				Integer productId = mex.getIntProperty("ProductId");
 				LOG.info("Getting info product with ID: " + productId);
-				Product product = new Product();
-				product.setProductId(productId);
-				product.setProductName("Camicia di Lino");
-				messageProduct.setObjectProperty("Product", product);
-				this.producer.send(messageProduct);
+//				if(productService.exists(productId)) {
+//					Product product = productService.findByObjectKey(productId.toString()).get();
+//					messageProduct.setIntProperty("Disponibility", product.getDisponibility());
+//					messageProduct.setIntProperty("Cost", product.getCost());
+					messageProduct.setIntProperty("Disponibility", 10);
+					messageProduct.setIntProperty("Cost", 20);
+					messageProduct.setJMSCorrelationID(mex.getJMSCorrelationID());
+
+		            //Send the response to the Destination specified by the JMSReplyTo field of the received message,
+		            //this is presumably a temporary queue created by the client
+		            this.producer.send(mex.getJMSReplyTo(), messageProduct);
+//				}
+//				else {
+//					messageProduct.setText("ERROE, PRODUCT DOESN'T EXISTS");
+//				}
 				break;
-			case "ProdottoAcquistato":
+			case "PurchasedProduct":
 				Integer prodId = mex.getIntProperty("ProductId");
 				Integer disponibility = mex.getIntProperty("Dispopnibility");
-				LOG.info("Got Message ProdottoAcquistato with: ( disponibility: " +disponibility+ ", prodId: "+ prodId+" )" );
+				LOG.info("Got Message ProdottoAcquistato with: ( disponibility: " + disponibility + ", prodId: "
+						+ prodId + " )");
+				// UPDATE di db
 				break;
 			default:
 				break;
