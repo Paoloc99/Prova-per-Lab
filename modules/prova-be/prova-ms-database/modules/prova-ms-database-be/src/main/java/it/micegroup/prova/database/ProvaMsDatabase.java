@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import it.micegroup.prova.database.jms.FromGatewayJMSListener;
 import it.micegroup.prova.database.jms.FromStoreJMSListener;
 import it.micegroup.prova.database.jms.MessaggisticaDbJms;
 
@@ -15,7 +16,9 @@ import it.micegroup.prova.database.jms.MessaggisticaDbJms;
 public class ProvaMsDatabase {
 	public static void main(String[] args) throws NamingException, JMSException, InterruptedException {
 		SpringApplication.run(ProvaMsDatabase.class, args);
-		FromStoreJMSListener listener = new FromStoreJMSListener();
-		listener.start();
+		FromStoreJMSListener listenerStore = new FromStoreJMSListener();
+		FromGatewayJMSListener listenerGateway = new FromGatewayJMSListener();
+		listenerStore.start();
+		listenerGateway.start();
 	}
 }

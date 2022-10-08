@@ -38,8 +38,15 @@ public class ToDatabaseJMSProducer implements MessageListener{
 
 		producer = session.createProducer(queue);
 		producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);
-		
+//		int i = 0;
+//		int j = 1;
+//		while(true) {
+//			
 		sendInfoProdottoRequest(1);
+//		i+=2;
+//		j+=2;
+//		Thread.sleep(10000);
+//		}
 //		sendPurchasedProductNotification(1,1);
 	}
 
@@ -88,12 +95,15 @@ public class ToDatabaseJMSProducer implements MessageListener{
 
 	@Override
 	public void onMessage(Message message) {
-		String messageText = null;
+		Integer disp;
+		Integer cost;
         try {
             if (message instanceof TextMessage) {
                 TextMessage textMessage = (TextMessage) message;
-                messageText = textMessage.getText();
-                System.out.println("messageText = " + messageText);
+                cost = textMessage.getIntProperty("Cost");
+                disp = textMessage.getIntProperty("Disponibility");
+                LOG.info("Disponibilita = " + disp);
+                LOG.info("Costo = " + cost);
             }
         } catch (JMSException e) {
             //Handle the exception appropriately
