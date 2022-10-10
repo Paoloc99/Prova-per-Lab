@@ -1,12 +1,10 @@
-
 CREATE TABLE product (
-	product_id INTEGER NOT NULL,
+	product_id INTEGER NOT NULL PRIMARY KEY auto_increment,
 	product_name VARCHAR(80),
 	cost INTEGER,
 	disponibility INTEGER,
 	description VARCHAR(80),
-	image VARCHAR(80)
+	image VARCHAR(2083)
 );
-ALTER TABLE product
-	ADD PRIMARY KEY (product_id);
+
 

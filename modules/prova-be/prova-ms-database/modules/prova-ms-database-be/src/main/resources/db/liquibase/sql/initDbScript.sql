@@ -1,1 +1,3 @@
-
+INSERT INTO `product` ( `product_name`, `cost`, `disponibility`, `description`, `image`) VALUES ( 'Pizza', '12', '50', 'Una bella pizza napoletana', 'https://images.dissapore.com/wp-content/uploads/2020/04/Pizza-Napoletana-Metodo-Margherita-dallalto-scaled.jpg');
+INSERT INTO `product` ( `product_name`, `cost`, `disponibility`, `description`, `image`) VALUES ( 'Kebab', '5', '80', 'Kebbabino', 'https://images.dissapore.com/wp-content/uploads/2020/04/Pizza-Napoletana-Metodo-Margherita-dallalto-scaled.jpg');
+INSERT INTO `product` ( `product_name`, `cost`, `disponibility`, `description`, `image`) VALUES ( 'Pet Rock', '20', '100', 'Meglio di un gatto', 'https://oyehappy.sgp1.digitaloceanspaces.com/wp-content/uploads/2017/11/IMG_2392-1024x683-1.jpg');
